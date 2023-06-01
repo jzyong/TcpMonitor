@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>leaflet 地图demo</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+          integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+          crossorigin=""/>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+            integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+            crossorigin=""></script>
+</head>
+
+
+<body>
+<div id="map" style="width :1366px;height: 768px"></div>
+</body>
+
+
+<script>
+
+    var map = L.map('map').setView([30.505, 104.7], 3); //设置初始坐标，和缩放大小
+
+    //普通地图
+    // L.tileLayer('https://webst01.is.autonavi.com/appmaptile?style=6&x={x}&y={y}&z={z}', {  //style=6 卫星地图
+   L.tileLayer('https://webst01.is.autonavi.com/appmaptile?style=7&x={x}&y={y}&z={z}', {  //style=7=普通地图
+    // L.tileLayer('https://webst01.is.autonavi.com/appmaptile?style=8&x={x}&y={y}&z={z}', {  //style=8=普通地图2
+    // L.tileLayer('https://webst01.is.autonavi.com/appmaptile?style=9&x={x}&y={y}&z={z}', {  //style=8=普通地图3
+    // L.tileLayer('https://webst01.is.autonavi.com/appmaptile?style=10&x={x}&y={y}&z={z}', {  //style=8=普通地图4
+        maxZoom:19, //最大缩放
+        minZoom:3,  //最小缩放
+        attribution: '高德地图'
+    }).addTo(map);
+
+    // //卫星地图
+    // L.tileLayer('https://webst01.is.autonavi.com/appmaptile?style=6&x={x}&y={y}&z={z}', {
+    //     maxZoom:19, //最大缩放
+    //     attribution: '高德地图'
+    // }).addTo(map);
+
+    //添加 标记
+    L.marker([51.5, -0.09]).addTo(map)
+        .bindPopup('A pretty CSS3 popup.<br> Easily customizable.') //弹出内容
+        .openPopup(); //弹出
+
+    //添加圆圈
+    var circle = L.circle([51.508, -0.11], {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+        radius: 500
+    }).addTo(map);
+
+    //多边形
+    var polygon = L.polygon([
+        [51.509, -0.08],
+        [51.503, -0.06],
+        [51.51, -0.047]
+    ]).addTo(map);
+
+    //提示框
+    var popup = L.popup()
+        .setLatLng([30.505, 104.7])
+        .setContent("I am a standalone popup.")
+        .openOn(map);
+
+    //点击提示
+    function onMapClick(e) {
+        // alert("You clicked the map at " + e.latlng);
+        console.info("You clicked the map at " + e.latlng)
+    }
+    map.on('click', onMapClick);
+
+    // 点击提示框
+    var popup = L.popup();
+    function onMapClick(e) {
+        popup
+            .setLatLng(e.latlng)
+            .setContent("You clicked the map at " + e.latlng.toString())
+            .openOn(map);
+    }
+    map.on('click', onMapClick);
+
+    L.control.scale().addTo(map); //添加缩放比例
+
+
+    const textBox = L.Control.extend({
+        onAdd: function(map) {
+            const div = L.DomUtil.create('div', 'my-text-box');
+            div.innerHTML = '<input type="text" placeholder="Enter text here">';
+            return div;
+        }
+    });
+
+    const textBoxControl = new textBox({ position: 'topright' });
+    textBoxControl.addTo(map);
+
+</script>
+</html>

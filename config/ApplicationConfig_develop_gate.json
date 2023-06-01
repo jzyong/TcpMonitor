@@ -1,0 +1,19 @@
+{
+  "id": 1,
+  "databaseUrl": "mongodb://admin:123456@127.0.0.1:27017/?maxPoolSize=1&connectTimeoutMS=30000&socketTimeoutMS=30000",
+  "databaseName": "net",
+  "profile": "develop",
+  "logLevel": "INFO",
+  "BPFFilter": "tcp and port 7010 or port 7014",
+  "serverPort": [
+    7010,
+    7014
+  ],
+  "snapLen": 655360,
+  "device": "\\Device\\NPF_Loopback",
+  "unmarshalPacket": true,
+  "webAccount": "admin",
+  "webPassword": "123",
+  "webUrl": "127.0.0.1:5041",
+  "serverIp": "127.0.0.1"
+}

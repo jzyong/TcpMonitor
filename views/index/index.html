@@ -1,0 +1,1001 @@
+<div class="wrapper wrapper-content">
+    <!--重点数据显示-->
+    <div class="row">
+        <div class="col-lg-2">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-totalsocketcount"></h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">{{.data.socketCount}}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-totalipcount"></h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">{{.data.ipCount}}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-packetretransmissionrate"></h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">{{.data.packetRetransmissionRate}}%</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-messageretransmissionrate"></h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">{{.data.messageRetransmissionRate}}%</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-rtt"></h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">{{.data.packetRtt}}ms</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-tcpconnections"></h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">{{.data.tcpConnectCount}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--所有数据显示-->
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-app"></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content no-padding">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-apptimeoutcount"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong>{{.data.appTimeOutCount}}</strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-appseqexecutetime"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong id="app_seq_execute_time_value"></strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-appseqexecutetimeaverage"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong>{{.data.appSeqExecuteTimeAverage}}ms</strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-appseqcount"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong>{{.data.appSeqCount}}</strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-applogincount"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong>{{.data.appLoginCount}}</strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-appreconnectcount"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong>{{.data.appReconnectCount}}</strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-tcpconnectiontime"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong id="tcp_connection_time"></strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-tcpconnectiontimeaverage"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong id="tcpConnectTimeAverageValue2"></strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-tcpconnectiontimemax"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong id="tcpConnectTimeMax"></strong>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-message"></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content no-padding">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-uploadcount"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong>{{.data.messageUploadCount}}</strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-downcount"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong>{{.data.messageDownloadCount}}</strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-uploadbytes"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong id="messageUploadBytesValue"></strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-downbytes"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong id="messageDownloadBytesValue">{{.data.messageDownloadBytes}}</strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-uploadbytesaverage"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong>{{.data.messageUploadBytesAverage}}B</strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-downbytesaverage"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong>{{.data.messageDownloadBytesAverage}}B</strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-uploadrps"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong>{{.data.messageUploadRps}}</strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-downrps"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong>{{.data.messageDownloadRps}}</strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-retransmission"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong>{{.data.messageRetransmissionRate}}%</strong>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-packet"></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content no-padding">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-uploadcount"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong>{{.data.packetUploadCount}}</strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-downcount"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong>{{.data.packetDownloadCount}}</strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-uploadbytes"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong id="packetUploadBytesValue"></strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-downbytes"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong id="packetDownloadBytesValue"></strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-uploadbytesaverage"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong>{{.data.packetUploadBytesAverage}}B</strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-downbytesaverage"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong>{{.data.packetDownloadBytesAverage}}B</strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-uploadrps"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong>{{.data.packetUploadRps}}</strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-downrps"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong>{{.data.packetDownloadRps}}</strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-retransmission"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong>{{.data.packetRetransmission}}</strong>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-systeminformation"></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content no-padding">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-cpu"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong id="overview_cpu"></strong>
+                                </div>
+                            </div>
+                            <div class="progress progress-small">
+                                <div id="overview_cpu_bar" class="progress-bar"></div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-memory"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong id="overview_memory"></strong>
+                                </div>
+                            </div>
+                            <div class="progress progress-small">
+                                <div id="overview_memory_bar" class="progress-bar"></div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-load"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong id="overview_load"></strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item ">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-tcpconnections_established"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong id="overview_tcp"></strong>
+                                </div>
+                            </div>
+                        </li>
+<!--                        <li class="list-group-item ">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-udpconnections_established"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong id="overview_udp"></strong>
+                                </div>
+                            </div>
+                        </li>-->
+                        <li class="list-group-item ">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-outbandwidth"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong id="overview_send"></strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item ">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-inbandwidth"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong id="overview_recv"></strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item ">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong langtag="word-inountpacketcount"></strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong>{{.data.io_count}}</strong>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item ">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <strong>Routine</strong>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong>{{.data.routineCount}}</strong>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 上下行消息rps、包rps线图-->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-messagerps"></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div id="message-rps" style="height: 300px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 添加连接数、上下行网络流量-->
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-connectioncount"></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div id="socket-connection" style="height: 300px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-bandwidth"></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div id="message-bandwidth" style="height: 300px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--饼图
+    1. socket断开类型(clientFin,clientRst,serverFin,serverRst,超时)
+    2.连接类型（登录，重连）
+    3.时长（<1m,1-10,10-60,60>）
+    4.每个socket请求消息个数（<1,1-100,100-1000,1000-10000,>10000）-->
+
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-socketclosetype"></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div id="socket-close-type" style="height: 400px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-connecttype"></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div id="socket-connect-type" style="height:400px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-duration"></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div id="socket-duration" style="height: 400px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-messagecount"></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div id="socket-message-count" style="height:400px;"></div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+    $("#tcp_connection_time").text(formatDuration({{.data.tcpConnectTime}}))
+    $("#tcpConnectTimeAverageValue").text(formatDuration({{.data.tcpConnectTimeAverage}}))
+    $("#tcpConnectTimeAverageValue2").text(formatDuration({{.data.tcpConnectTimeAverage}}))
+    $("#tcpConnectTimeMax").text(formatDuration({{.data.tcpConnectTimeMax}}))
+    $("#app_seq_execute_time_value").text(formatDuration({{.data.appSeqExecuteTime}}))
+    $("#messageUploadBytesValue").text(changeunit({{.data.messageUploadBytes}}))
+    $("#messageDownloadBytesValue").text(changeunit({{.data.messageDownloadBytes}}))
+    $("#packetUploadBytesValue").text(changeunit({{.data.packetUploadBytes}}))
+    $("#packetDownloadBytesValue").text(changeunit({{.data.packetDownloadBytes}}))
+
+
+    $("#overview_cpu").text("{{.data.cpu}}%")
+    $("#overview_cpu_bar").width("{{.data.cpu}}%")
+    $("#overview_memory").text("{{.data.virtual_mem}}%")
+    $("#overview_memory_bar").width("{{.data.virtual_mem}}%")
+    $.each( JSON.parse({{.data.load}}), function(i, value) { $("#overview_load").append('&emsp;' + value.toFixed(2)) });
+    $("#overview_tcp").text("{{.data.tcp}}")
+    $("#overview_udp").text("{{.data.udp}}")
+    $("#overview_send").text(changeunit({{.data.io_send}}) + "/s")
+    $("#overview_recv").text(changeunit({{.data.io_recv}}) + "/s")
+
+
+    chartdatas['message-rps'] = {
+        tooltip: {
+            trigger: 'axis'
+        },
+        grid: {
+            left: '3%',
+            right: '3%',
+            top: '5%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['{{.data.indexLine1.Time}}', '{{.data.indexLine2.Time}}', '{{.data.indexLine3.Time}}', '{{.data.indexLine4.Time}}', '{{.data.indexLine5.Time}}', '{{.data.indexLine6.Time}}', '{{.data.indexLine7.Time}}', '{{.data.indexLine8.Time}}', '{{.data.indexLine9.Time}}', '{{.data.indexLine10.Time}}', '{{.data.indexLine11.Time}}', '{{.data.indexLine12.Time}}']
+        },
+        yAxis: {
+            type: 'value',
+            axisLabel: {
+                show: true,
+                interval: 'auto',
+                formatter: function (params){
+                    return params.toFixed(2);
+                }
+            }
+        },
+        series: [
+            {
+                name: '',
+                type: 'line',
+                stack: 'UploadRps',
+                smooth: true,
+                data: [{{.data.indexLine1.UploadRps}}, {{.data.indexLine2.UploadRps}}, {{.data.indexLine3.UploadRps}}, {{.data.indexLine4.UploadRps}}, {{.data.indexLine5.UploadRps}}, {{.data.indexLine6.UploadRps}}, {{.data.indexLine7.UploadRps}}, {{.data.indexLine8.UploadRps}}, {{.data.indexLine9.UploadRps}}, {{.data.indexLine10.UploadRps}}, {{.data.indexLine11.UploadRps}}, {{.data.indexLine12.UploadRps}}]
+    },
+    {
+        name: '',
+            type: 'line',
+        stack: 'DownloadRps',
+        smooth: true,
+        data: [{{.data.indexLine1.DownloadRps}}, {{.data.indexLine2.DownloadRps}}, {{.data.indexLine3.DownloadRps}}, {{.data.indexLine4.DownloadRps}}, {{.data.indexLine5.DownloadRps}}, {{.data.indexLine6.DownloadRps}}, {{.data.indexLine7.DownloadRps}}, {{.data.indexLine8.DownloadRps}}, {{.data.indexLine9.DownloadRps}}, {{.data.indexLine10.DownloadRps}}, {{.data.indexLine11.DownloadRps}}, {{.data.indexLine12.DownloadRps}}]
+    }
+    ]
+    };
+
+    chartdatas['socket-connection'] = {
+        tooltip: {
+            trigger: 'axis'
+        },
+        grid: {
+            left: '3%',
+            right: '3%',
+            top: '5%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['{{.data.indexLine1.Time}}', '{{.data.indexLine2.Time}}', '{{.data.indexLine3.Time}}', '{{.data.indexLine4.Time}}', '{{.data.indexLine5.Time}}', '{{.data.indexLine6.Time}}', '{{.data.indexLine7.Time}}', '{{.data.indexLine8.Time}}', '{{.data.indexLine9.Time}}', '{{.data.indexLine10.Time}}', '{{.data.indexLine11.Time}}', '{{.data.indexLine12.Time}}']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+
+    {
+        name: '',
+            type: 'line',
+        stack: 'ConnectCount',
+        smooth: true,
+        data: [{{.data.indexLine1.ConnectCount}}, {{.data.indexLine2.ConnectCount}}, {{.data.indexLine3.ConnectCount}}, {{.data.indexLine4.ConnectCount}}, {{.data.indexLine5.ConnectCount}}, {{.data.indexLine6.ConnectCount}}, {{.data.indexLine7.ConnectCount}}, {{.data.indexLine8.ConnectCount}}, {{.data.indexLine9.ConnectCount}}, {{.data.indexLine10.ConnectCount}}, {{.data.indexLine11.ConnectCount}}, {{.data.indexLine12.ConnectCount}}]
+    }
+    ]
+    };
+
+    chartdatas['message-bandwidth'] = {
+        tooltip: {
+            trigger: 'axis',
+            formatter: function (params) {
+                var str = params[0].axisValue + '<br/>';
+                for (i in params){
+                    str += '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:' + params[i].color + ';"></span>' + params[i].seriesName +': '+ changeunit(params[i].data) +'/s</br>';
+                }
+                return str;
+            }
+        },
+        grid: {
+            left: '3%',
+            right: '3%',
+            top: '5%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['{{.data.indexLine1.Time}}', '{{.data.indexLine2.Time}}', '{{.data.indexLine3.Time}}', '{{.data.indexLine4.Time}}', '{{.data.indexLine5.Time}}', '{{.data.indexLine6.Time}}', '{{.data.indexLine7.Time}}', '{{.data.indexLine8.Time}}', '{{.data.indexLine9.Time}}', '{{.data.indexLine10.Time}}', '{{.data.indexLine11.Time}}', '{{.data.indexLine12.Time}}']
+        },
+        yAxis: {
+            type: 'value',
+            axisLabel: {
+                show: true,
+                interval: 'auto',
+                formatter: function (params){
+                    return changeunit (params);
+                }
+            }
+        },
+        series: [
+            {
+                name: '',
+                type: 'line',
+                stack: 'UploadBytes',
+                smooth: true,
+                data: [{{.data.indexLine1.UploadBytes}}, {{.data.indexLine2.UploadBytes}}, {{.data.indexLine3.UploadBytes}}, {{.data.indexLine4.UploadBytes}}, {{.data.indexLine5.UploadBytes}}, {{.data.indexLine6.UploadBytes}}, {{.data.indexLine7.UploadBytes}}, {{.data.indexLine8.UploadBytes}}, {{.data.indexLine9.UploadBytes}}, {{.data.indexLine10.UploadBytes}}, {{.data.indexLine11.UploadBytes}}, {{.data.indexLine12.UploadBytes}}]
+    },
+    {
+        name: '',
+            type: 'line',
+        stack: 'DownloadBytes',
+        smooth: true,
+        data: [{{.data.indexLine1.DownloadBytes}}, {{.data.indexLine2.DownloadBytes}}, {{.data.indexLine3.DownloadBytes}}, {{.data.indexLine4.DownloadBytes}}, {{.data.indexLine5.DownloadBytes}}, {{.data.indexLine6.DownloadBytes}}, {{.data.indexLine7.DownloadBytes}}, {{.data.indexLine8.DownloadBytes}}, {{.data.indexLine9.DownloadBytes}}, {{.data.indexLine10.DownloadBytes}},, {{.data.indexLine11.DownloadBytes}}, {{.data.indexLine12.DownloadBytes}}]
+    }
+    ]
+    };
+
+
+    chartdatas['socket-close-type'] = {
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b} : {c} ({d}%)'
+        },
+        legend: {
+            orient: 'horizontal',
+            left: 'left',
+            data: ['', '', '', '', '']
+        },
+        series: [
+            {
+                name: '',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '60%'],
+                data: [
+                    {
+                        name: '',
+                        value:{{.data.closeType.ClientFin}}
+                    },
+                    {
+                        name: '',
+                        value:{{.data.closeType.ClientRst}}
+                    },
+                    {
+                        name: '',
+                        value:{{.data.closeType.ServerFin}}
+                    },
+                    {
+                        name: '',
+                        value:{{.data.closeType.ServerRst}}
+                    },
+                    {
+                        name: '',
+                        value:{{.data.closeType.TimeOut}}
+                    }
+                ],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+
+    chartdatas['socket-connect-type'] = {
+        tooltip: {
+            trigger: 'item',
+            formatter: function (p) {
+                return p.seriesName + '<br>' + p.name + ':' + p.data.value;
+            }
+        },
+        legend: {
+            orient: 'horizontal',
+            left: 'left',
+            data: ['', '']
+        },
+        series: [
+            {
+                name: '',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '60%'],
+                data: [
+                    {
+                        name: '',
+                        value:{{.data.loginCount}}
+                    },
+                    {
+                        name: '',
+                        value:{{.data.reconnectCount}}
+                    }
+                ],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+
+	chartdatas['socket-duration'] = {
+		tooltip: {
+			trigger: 'item',
+			formatter: function (p) {
+				return p.seriesName + '<br>' + p.name + ':' + p.data.value;
+			}
+		},
+		legend: {
+			orient: 'horizontal',
+			left: 'left',
+			data: ['', '','','']
+		},
+		series: [
+			{
+				name: '',
+				type: 'pie',
+				radius: '55%',
+				center: ['50%', '60%'],
+				data: [
+					{
+						name: '',
+						value:{{.data.durationStat.Zero}}
+					},
+					{
+						name: '',
+						value:{{.data.durationStat.One}}
+					},
+                    {
+                        name: '',
+                        value:{{.data.durationStat.Ten}}
+                    },
+                    {
+                        name: '',
+                        value:{{.data.durationStat.Sixty}}
+                    }
+				],
+				itemStyle: {
+					emphasis: {
+						shadowBlur: 10,
+						shadowOffsetX: 0,
+						shadowColor: 'rgba(0, 0, 0, 0.5)'
+					}
+				}
+			}
+		]
+	};
+
+	chartdatas['socket-message-count'] = {
+		tooltip: {
+			trigger: 'item',
+			formatter: '{a} <br/>{b} : {c} ({d}%)'
+		},
+		legend: {
+			orient: 'horizontal',
+			left: 'left',
+			data: ['', '', '', '', '']
+		},
+		series: [
+			{
+				name: '',
+				type: 'pie',
+				radius: '55%',
+				center: ['50%', '60%'],
+				data: [
+					{
+						name: '',
+						value:{{.data.messageCountStat.Zero}}
+					},
+					{
+						name: '',
+						value:{{.data.messageCountStat.One}}
+					},
+					{
+						name: '',
+						value:{{.data.messageCountStat.Hundred}}
+					},
+					{
+						name: '',
+						value:{{.data.messageCountStat.Thousand}}
+					},
+					{
+						name: '',
+						value:{{.data.messageCountStat.TenThousand}}
+					}
+				],
+				itemStyle: {
+					emphasis: {
+						shadowBlur: 10,
+						shadowOffsetX: 0,
+						shadowColor: 'rgba(0, 0, 0, 0.5)'
+					}
+				}
+			}
+		]
+	};
+
+    window.addEventListener('resize', () => {
+        for(var key in charts){
+            charts[key].resize();
+        }
+    });
+</script>

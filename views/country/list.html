@@ -1,0 +1,173 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-socket"></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="ibox-content">
+                        <table id="table"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    /*bootstrap table*/
+    $('#table').bootstrapTable({
+        toolbar: "#toolbar",
+        method: 'post', // 服务器数据的请求方式 get or post
+        url: "{{.web_base_url}}/country/list", // 服务器数据的加载地址
+        contentType: "application/x-www-form-urlencoded",
+        striped: true, // 设置为true会有隔行变色效果
+        search: true,
+        showHeader: true,
+        showColumns: true,
+        showRefresh: true,
+        pagination: true,//分页
+        sidePagination: 'server',//服务器端分页
+        pageNumber: 1,
+        pageList: [5, 10, 20, 50],//分页步进值
+        detailView: true,
+        smartDisplay: true, // 智能显示 pagination 和 cardview 等
+        queryParams: function(params) {
+            return {
+                limit: params.limit,
+                offset: params.offset,
+                search: params.search,
+                sort: params.sort,
+                order: params.order,
+                type :{{.type}}
+            };
+        },
+        onExpandRow: function () {
+            $('body').setLang('.detail-view');
+        },
+        onPostBody: function (data) {
+            if ($(this)[0].locale != undefined) $('body').setLang('#table');
+        },
+        detailFormatter: function (index, row, element) {
+            return '<b langtag="word-packetcount"></b>: ' + row.PacketCount + '&emsp;'
+                + '<b langtag="word-bytesize"></b>: ' + row.ByteSize + '&emsp;'
+                + '<b langtag="word-duration"></b>: ' +  formatDuration(row.Duration) + '&emsp;'
+                + '<b langtag="word-seqrequestcount"></b>: ' + row.SeqRequestCount + '&emsp;'
+                + '<b langtag="word-timeoutcount"></b>: ' + row.TimeOutCount + '&emsp;'
+                + '<b langtag="word-messagemaxsize"></b>: ' + row.MessageMaxSize + '&emsp;'
+                + '<b langtag="word-executetime"></b>: ' + formatDuration(row.ExecuteTime/1000) + '&emsp; </br>'
+                + '<b langtag="word-messageretransmissionrate"></b>: ' + row.MessageRetransmissionRate + '&emsp;'
+                + '<b langtag="word-RetransmissionRate"></b>: ' + row.PacketRetransmissionRate + '&emsp;'
+                + '<b langtag="word-rps"></b>: ' + row.Rps2 + '&emsp;'
+                + '<b langtag="word-executeaveragetime"></b>: ' + row.ExecuteAverageTime + '&emsp;'
+                + '<b langtag="word-appreconnectcount"></b>: ' + row.ReconnectCount + '&emsp;'
+                + '<b langtag="word-applogincount"></b>: ' + row.LoginCount + '&emsp;'
+        },
+        //表格的列
+        columns: [
+            {
+                field: 'Name',//域值
+                title: '<span langtag="word-name"></span>',//标题
+                halign: 'center',
+                visible: true//false表示不显示
+            },
+            {
+                field: 'IpCount',//域值
+                title: '<span langtag="word-ipcount"></span>',//标题
+                halign: 'center',
+                visible: true,//false表示不显示
+                sortable: true//启用排序
+            },
+            {
+                field: 'UserCount',//域值
+                title: '<span langtag="word-usercount"></span>',//标题
+                halign: 'center',
+                visible: true,//false表示不显示
+                sortable: true//启用排序
+            },
+            {
+                field: 'ConnectCount',//域值
+                title: '<span langtag="word-connectcount"></span>',//标题
+                halign: 'center',
+                visible: true,//false表示不显示
+                sortable: true//启用排序
+            },
+            {
+                field: 'Rtt',//域值
+                title: '<span langtag="word-rtt"></span>',//标题
+                halign: 'center',
+                visible: true,//false表示不显示
+                sortable: true//启用排序
+            },
+            {
+                field: 'MinTTL',//域值
+                title: '<span langtag="word-minttl"></span>',//标题
+                halign: 'center',
+                visible: true,//false表示不显示
+                sortable: true//启用排序
+            },
+            {
+                field: 'RetransmissionRate',//域值
+                title: '<span langtag="word-retransmissionrate"></span>',//标题
+                halign: 'center',
+                visible: true,//false表示不显示
+                sortable: true,//启用排序
+                formatter: function (value, row, index) {
+                    return value.toFixed(2)+'%'
+                }
+            },
+            {
+                field: 'Rps',//域值
+                title: '<span langtag="word-rps"></span>',//标题
+                halign: 'center',
+                visible: true,//false表示不显示
+                sortable: true,//启用排序
+                formatter: function (value, row, index) {
+                    return value.toFixed(2)
+                }
+            },
+            {
+                field: 'MinWindowSize',//域值
+                title: '<span langtag="word-minwindowsize"></span>',//标题
+                halign: 'center',
+                visible: true,//false表示不显示
+                sortable: true//false表示不显示
+            },
+            {
+                field: 'ConnectTimeAverage',//域值
+                title: '<span langtag="word-tcpconnectiontimeaverage"></span>',//标题
+                halign: 'center',
+                visible: true,//false表示不显示
+                sortable: true,//false表示不显示
+                formatter: function (value, row, index) {
+                    return formatDuration(value)
+                }
+            }
+        ]
+    });
+
+    //请求socket的详细消息
+    function messageDetail(id) {
+        console.log("请求ID:" + id)
+        $.ajax({
+            type: "POST",
+            url: "{{.web_base_url}}/socket/message",
+            data: {id: id},
+            success: function (res) {
+                console.log("过滤返回:" + res)
+                $("#socketMessageDetailValue").text(res)
+                // document.location.reload();
+            }
+        })
+    }
+
+</script>

@@ -1,0 +1,99 @@
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+        crossorigin=""/>
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+          integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+          crossorigin=""></script>
+</head>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12"  id="map" style="width :1366px;height: 768px">
+        </div>
+    </div>
+</div>
+
+
+<script>
+  var map = L.map('map').setView([30.505, 104.7], 3); //设置初始坐标，和缩放大小
+  L.tileLayer('https://webst01.is.autonavi.com/appmaptile?style=7&x={x}&y={y}&z={z}', {  //style=7=普通地图
+    maxZoom:19, //最大缩放
+    minZoom:3,  //最小缩放
+    attribution: '高德地图'
+  }).addTo(map);
+
+  L.control.scale().addTo(map); //添加缩放比例
+
+  // 添加服务器标记
+  var serverIcon = L.icon({
+      iconUrl: '/static/img/server-host.jpg',
+      iconSize:     [40, 50], // size of the icon
+      shadowSize:   [50, 64], // size of the shadow
+      iconAnchor:   [22, 22], // point of the icon which will correspond to marker's location
+      shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+  });
+  L.marker([{{.serverLocation.Latitude}}, {{.serverLocation.Longitude}}],{icon:serverIcon}).addTo(map)
+          .bindPopup('服务器位置：{{.serverLocationName}}') //弹出内容
+          .openPopup(); //弹出
+
+
+  $.ajax({
+      type: "POST",
+      url:"{{.web_base_url}}/country/mapdata",
+      data:{type:{{.type}}},
+      success:function (result){
+          var type={{.type}}
+
+          //展示统计信息
+          var logText="数量："+ result.groups.length
+          const textBox = L.Control.extend({
+              onAdd: function(map) {
+                  const div = L.DomUtil.create('div', 'my-text');
+                  div.innerHTML = logText;
+                  return div;
+              }
+          });
+          const textBoxControl = new textBox({ position: 'topright' });
+          textBoxControl.addTo(map);
+
+          //循环展示所有标记
+          $.each(result.groups, function (key, group) {
+               console.log(group.name+" "+group.rtt+"ms "+group.count)
+              // L.popup().setLatLng([group.latitude, group.longitude])
+              //     .setContent(group.name+": "+group.count+"人  Rtt:"+group.rtt+"ms  重传率:"+(group.retransmitRate*100).toFixed(2)+"%  MinTTL:"+group.minTTL)
+              //     .openOn(map);
+              //使用标记，弹出框拖拽地图就不见了 ，不能同时多个提示？
+              L.marker([group.latitude, group.longitude]).addTo(map)
+                  .bindPopup(group.name+": "+group.count+"条  Rtt:"+group.rtt+"ms  重传率:"+(group.retransmitRate*100).toFixed(2)+"%  MinTTL:"+group.minTTL) //弹出内容
+                  .openPopup(); //弹出
+
+              let color = "green";
+              if (group.rtt<100){
+                  color="green"
+              }else if (group.rtt<200){
+                  color="yellow"
+              }else {
+                  color="red"
+              }
+              let radius= group.count*100
+              if (type==0&&radius>100000){
+                  radius=100000
+              }else if (type==1&&radius>50000){
+                  radius=50000
+              }
+
+              L.circle([group.latitude, group.longitude], {
+                  color: color,
+                  fillColor: color,
+                  fillOpacity: 0.5,
+                  radius: radius
+              }).addTo(map);
+          });
+
+          // console.log("地图数据:"+result.groups)
+      }
+  })
+
+</script>

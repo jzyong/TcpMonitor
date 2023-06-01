@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content>
+
+    <application>网络监控</application>
+
+    <default>en-US</default>
+
+    <languages>
+        <zh-CN>简体中文</zh-CN>
+        <en-US>English</en-US>
+    </languages>
+
+    <lang id="title-admin">
+        <zh-CN>管理</zh-CN>
+        <en-US>Admin</en-US>
+    </lang>
+    <lang id="word-dashboard">
+        <zh-CN>仪表盘</zh-CN>
+        <en-US>Dashboard</en-US>
+    </lang>
+    <lang id="word-admin">
+        <zh-CN>管理员</zh-CN>
+        <en-US>Admin</en-US>
+    </lang>
+    <lang id="word-socket">
+        <zh-CN>套接字连接</zh-CN>
+        <en-US>Socket</en-US>
+    </lang>
+    <lang id="word-systeminformation">
+        <zh-CN>系统信息</zh-CN>
+        <en-US>System information</en-US>
+    </lang>
+    <lang id="word-system">
+        <zh-CN>系统</zh-CN>
+        <en-US>System</en-US>
+    </lang>
+    <lang id="word-welcome">
+        <zh-CN>欢迎使用</zh-CN>
+        <en-US>Welcome to use</en-US>
+    </lang>
+    <lang id="word-login">
+        <zh-CN>登录</zh-CN>”
+        <en-US>Login</en-US>
+    </lang>
+    <lang id="title-login">
+        <zh-CN>登录</zh-CN>
+        <en-US>Login</en-US>
+    </lang>
+    <lang id="word-logout">
+        <zh-CN>退出</zh-CN>
+        <en-US>Logout</en-US>
+    </lang>
+    <lang id="word-log">
+        <zh-CN>日志</zh-CN>
+        <en-US>Log</en-US>
+    </lang>
+    <lang id="word-copyright">
+        <zh-CN>版权所有</zh-CN>
+        <en-US>Copyright</en-US>
+    </lang>
+    <lang id="word-go">
+        <zh-CN>进入</zh-CN>
+        <en-US>go</en-US>
+    </lang>
+    <lang id="word-readmore">
+        <zh-CN>更多说明</zh-CN>
+        <en-US>Read more</en-US>
+    </lang>
+    <lang id="word-server">
+        <zh-CN>服务器</zh-CN>
+        <en-US>Server</en-US>
+    </lang>
+    <lang id="word-console">
+        <zh-CN>控制台</zh-CN>
+        <en-US>Console</en-US>
+    </lang>
+    <lang id="word-load">
+        <zh-CN>负载</zh-CN>
+        <en-US>Load</en-US>
+    </lang>
+    <lang id="word-cpu">
+        <zh-CN>处理器</zh-CN>
+        <en-US>CPU</en-US>
+    </lang>
+    <lang id="word-memory">
+        <zh-CN>内存</zh-CN>
+        <en-US>Memory</en-US>
+    </lang>
+    <lang id="word-bandwidth">
+        <zh-CN>带宽</zh-CN>
+        <en-US>Bandwidth</en-US>
+    </lang>
+    <lang id="word-connections_established">
+        <zh-CN>连接数 (已建立)</zh-CN>
+        <en-US>Connections (establish)</en-US>
+    </lang>
+
+    <lang id="info-tagline">
+        <zh-CN>面向应用的网络分析、统计、监控平台</zh-CN>
+        <en-US>Application oriented network analysis and statistics platform</en-US>
+    </lang>
+    <lang id="info-feature1">
+        <zh-CN>在网卡上反序列Slots网关所有收发消息</zh-CN>
+        <en-US>Deserialize all incoming and outgoing messages on the Slots gateway on the NIC</en-US>
+    </lang>
+    <lang id="info-feature2">
+        <zh-CN>排查每个Socket关闭原因，客户端或者服务器</zh-CN>
+        <en-US>Locate the cause of each Socket shutdown, client or server</en-US>
+    </lang>
+    <lang id="info-feature3">
+        <zh-CN>统计网络消息包个数、大小、Socket关闭类型、连接类型、时长...</zh-CN>
+        <en-US>Statistics on the number, size, Socket closing type, connection type, and duration of network messages.
+        </en-US>
+    </lang>
+    <lang id="info-feature4">
+        <zh-CN>查看所有国家或城市网络延迟、丢包率</zh-CN>
+        <en-US>View the network delay and packet loss rates of all countries or cities</en-US>
+    </lang>
+    <lang id="info-feature5">
+        <zh-CN>查看用户分布区域</zh-CN>
+        <en-US>View user distribution areas</en-US>
+    </lang>
+    <lang id="info-feature6">
+        <zh-CN>监控主机CPU、内存、网络等信息</zh-CN>
+        <en-US>Monitors server CPU, memory, and network information</en-US>
+    </lang>
+    <lang id="word-username">
+        <zh-CN>用户名</zh-CN>
+        <en-US>Username</en-US>
+    </lang>
+    <lang id="word-password">
+        <zh-CN>密码</zh-CN>
+        <en-US>Password</en-US>
+    </lang>
+    <lang id="word-totalsocketcount">
+        <zh-CN>总Socket数</zh-CN>
+        <en-US>Total socket number</en-US>
+    </lang>
+    <lang id="word-totalipcount">
+        <zh-CN>总IP数</zh-CN>
+        <en-US>Total IP number</en-US>
+    </lang>
+    <lang id="word-tcpconnections">
+        <zh-CN>TCP连接数</zh-CN>
+        <en-US>TCP number</en-US>
+    </lang>
+    <lang id="">
+        <zh-CN></zh-CN>
+        <en-US></en-US>
+    </lang>
+    <lang id="word-tcpconnectiontimeaverage">
+        <zh-CN>TCP平均连接时间</zh-CN>
+        <en-US>Average TCP connection time</en-US>
+    </lang>
+    <lang id="word-app">
+        <zh-CN>应用</zh-CN>
+        <en-US>APP</en-US>
+    </lang>
+    <lang id="word-message">
+        <zh-CN>消息</zh-CN>
+        <en-US>Message</en-US>
+    </lang>
+    <lang id="word-packet">
+        <zh-CN>包</zh-CN>
+        <en-US>Packet</en-US>
+    </lang>
+    <lang id="word-packetdownrps">
+        <zh-CN>下行包rps</zh-CN>
+        <en-US>down packet rps</en-US>
+    </lang>
+    <lang id="word-apptimeoutcount">
+        <zh-CN>超时数</zh-CN>
+        <en-US>Timeout Count</en-US>
+    </lang>
+    <lang id="word-appseqexecutetime">
+        <zh-CN>执行时间</zh-CN>
+        <en-US>Execute Time</en-US>
+    </lang>
+    <lang id="word-appseqexecutetimeaverage">
+        <zh-CN>平均执行时间</zh-CN>
+        <en-US>Average Execute Time</en-US>
+    </lang>
+    <lang id="word-appseqcount">
+        <zh-CN>序列号请求数</zh-CN>
+        <en-US>Sequence Request Count</en-US>
+    </lang>
+    <lang id="word-applogincount">
+        <zh-CN>登录数</zh-CN>
+        <en-US>Login Count</en-US>
+    </lang>
+    <lang id="word-appreconnectcount">
+        <zh-CN>重连数</zh-CN>
+        <en-US>Reconnect Count</en-US>
+    </lang>
+    <lang id="word-tcpconnectiontime">
+        <zh-CN>TCP总连接时间</zh-CN>
+        <en-US>TCP Connection Time</en-US>
+    </lang>
+    <lang id="word-uploadcount">
+        <zh-CN>上行数</zh-CN>
+        <en-US>Upload Count</en-US>
+    </lang>
+    <lang id="word-downcount">
+        <zh-CN>下行数</zh-CN>
+        <en-US>Down Count</en-US>
+    </lang>
+    <lang id="word-uploadbytes">
+        <zh-CN>上行大小</zh-CN>
+        <en-US>Upload Size</en-US>
+    </lang>
+    <lang id="word-downbytes">
+        <zh-CN>下行大小</zh-CN>
+        <en-US>Down Size</en-US>
+    </lang>
+    <lang id="word-uploadbytesaverage">
+        <zh-CN>上行平均大小</zh-CN>
+        <en-US>Average Upload Size</en-US>
+    </lang>
+    <lang id="word-downbytesaverage">
+        <zh-CN>下行平均大小</zh-CN>
+        <en-US>Average Down Size</en-US>
+    </lang>
+    <lang id="word-uploadrps">
+        <zh-CN>上行rps</zh-CN>
+        <en-US>Upload rps</en-US>
+    </lang>
+    <lang id="word-downrps">
+        <zh-CN>下行rps</zh-CN>
+        <en-US>Down rps</en-US>
+    </lang>
+    <lang id="word-tcpconnections_established">
+        <zh-CN>TCP 连接 (已建立)</zh-CN>
+        <en-US>TCP connections (establish)</en-US>
+    </lang>
+    <lang id="word-udpconnections_established">
+        <zh-CN>UDP 连接 (已建立)</zh-CN>
+        <en-US>UDP connections (establish)</en-US>
+    </lang>
+    <lang id="word-outbandwidth">
+        <zh-CN>流出带宽</zh-CN>
+        <en-US>Out</en-US>
+    </lang>
+    <lang id="word-inbandwidth">
+        <zh-CN>流入带宽</zh-CN>
+        <en-US>In</en-US>
+    </lang>
+    <lang id="word-messagecount">
+        <zh-CN>消息数</zh-CN>
+        <en-US>Message Count</en-US>
+    </lang>
+    <lang id="word-messagerps">
+        <zh-CN>消息RPS</zh-CN>
+        <en-US>Message RPS</en-US>
+    </lang>
+    <lang id="word-connectioncount">
+        <zh-CN>连接数</zh-CN>
+        <en-US>Connection Count</en-US>
+    </lang>
+    <lang id="word-socketclosetype">
+        <zh-CN>Socket关闭类型</zh-CN>
+        <en-US>Socket Close Type</en-US>
+    </lang>
+    <lang id="word-connecttype">
+        <zh-CN>连接类型</zh-CN>
+        <en-US>Connect Type</en-US>
+    </lang>
+    <lang id="word-duration">
+        <zh-CN>时长</zh-CN>
+        <en-US>Duration</en-US>
+    </lang>
+    <lang id="word-connection">
+        <zh-CN>连接</zh-CN>
+        <en-US>Connection</en-US>
+    </lang>
+    <lang id="word-begintime">
+        <zh-CN>开始时间</zh-CN>
+        <en-US>Begin Time</en-US>
+    </lang>
+    <lang id="word-endtime">
+        <zh-CN>结束时间</zh-CN>
+        <en-US>End Time</en-US>
+    </lang>
+    <lang id="word-closetype">
+        <zh-CN>关闭类型</zh-CN>
+        <en-US>Close Type</en-US>
+    </lang>
+    <lang id="word-packetcount">
+        <zh-CN>包数(消息数/包数/重传包数)</zh-CN>
+        <en-US>Packet Count(Message/Packet/Retransmission)</en-US>
+    </lang>
+    <lang id="word-bytesize">
+        <zh-CN>字节大小(消息/包)</zh-CN>
+        <en-US>Byte Size(Message/Packet)</en-US>
+    </lang>
+    <lang id="word-rps">
+        <zh-CN>Rps</zh-CN>
+        <en-US>Rps</en-US>
+    </lang>
+    <lang id="word-messagemaxsize">
+        <zh-CN>最大消息长度</zh-CN>
+        <en-US>Max Message Size</en-US>
+    </lang>
+    <lang id="word-reconnect">
+        <zh-CN>重连</zh-CN>
+        <en-US>Reconnect</en-US>
+    </lang>
+    <lang id="word-timeoutcount">
+        <zh-CN>超时数</zh-CN>
+        <en-US>Time Out Count</en-US>
+    </lang>
+    <lang id="word-executeaveragetime">
+        <zh-CN>平均执行时间(ms)</zh-CN>
+        <en-US>Average Execute Time(ms)</en-US>
+    </lang>
+    <lang id="word-option">
+        <zh-CN>选项</zh-CN>
+        <en-US>Option</en-US>
+    </lang>
+    <lang id="word-download">
+        <zh-CN>下载</zh-CN>
+        <en-US>Download</en-US>
+    </lang>
+    <lang id="word-name">
+        <zh-CN>名字</zh-CN>
+        <en-US>Name</en-US>
+    </lang>
+    <lang id="word-syn">
+        <zh-CN>SYN</zh-CN>
+        <en-US>SYN</en-US>
+    </lang>
+    <lang id="word-executetime">
+        <zh-CN>执行时间</zh-CN>
+        <en-US>Execute Time</en-US>
+    </lang>
+    <lang id="word-seqrequestcount">
+        <zh-CN>序列号请求数</zh-CN>
+        <en-US>Sequence Request Count</en-US>
+    </lang>
+    <lang id="word-retransmissionrate">
+        <zh-CN>重传率</zh-CN>
+        <en-US>Retransmission Rate</en-US>
+    </lang>
+    <lang id="word-packetretransmissionrate">
+        <zh-CN>包重传率</zh-CN>
+        <en-US>Packet Retransmission Rate</en-US>
+    </lang>
+    <lang id="word-messageretransmissionrate">
+        <zh-CN>消息重传率</zh-CN>
+        <en-US>Message Retransmission Rate</en-US>
+    </lang>
+    <lang id="word-packetrps">
+        <zh-CN>包RPS</zh-CN>
+        <en-US>Packet RPS</en-US>
+    </lang>
+    <lang id="word-filter">
+        <zh-CN>过滤</zh-CN>
+        <en-US>Filter</en-US>
+    </lang>
+    <lang id="word-socketcloseopen">
+        <zh-CN>Socket关闭或打开</zh-CN>
+        <en-US>Socket close or open</en-US>
+    </lang>
+    <lang id="word-baselog">
+        <zh-CN>基础日志</zh-CN>
+        <en-US>Base Log</en-US>
+    </lang>
+    <lang id="word-detaillog">
+        <zh-CN>详细日志</zh-CN>
+        <en-US>Detail Log</en-US>
+    </lang>
+    <lang id="word-refresh">
+        <zh-CN>刷新</zh-CN>
+        <en-US>Refresh</en-US>
+    </lang>
+    <lang id="word-detail">
+        <zh-CN>详细</zh-CN>
+        <en-US>Detail</en-US>
+    </lang>
+    <lang id="word-playerid">
+        <zh-CN>玩家ID</zh-CN>
+        <en-US>Player ID</en-US>
+    </lang>
+    <lang id="word-area">
+        <zh-CN>地区</zh-CN>
+        <en-US>Area</en-US>
+    </lang>
+    <lang id="word-rtt">
+        <zh-CN>往返时延</zh-CN>
+        <en-US>RTT</en-US>
+    </lang>
+    <lang id="word-tcpconnectiontimemax">
+        <zh-CN>TCP最大连接时间</zh-CN>
+        <en-US>TCP Max Connect Time</en-US>
+    </lang>
+    <lang id="word-retransmission">
+        <zh-CN>重传率</zh-CN>
+        <en-US>Retransmission Rate</en-US>
+    </lang>
+    <lang id="word-minttl">
+        <zh-CN>最小TTL</zh-CN>
+        <en-US>Min TTL</en-US>
+    </lang>
+    <lang id="word-minwindowsize">
+        <zh-CN>最小窗口大小</zh-CN>
+        <en-US>Min Window Size</en-US>
+    </lang>
+    <lang id="word-inountpacketcount">
+        <zh-CN>进出包数</zh-CN>
+        <en-US>In/Out Packet Count</en-US>
+    </lang>
+    <lang id="word-city">
+        <zh-CN>城市</zh-CN>
+        <en-US>City</en-US>
+    </lang>
+    <lang id="word-list">
+        <zh-CN>列表</zh-CN>
+        <en-US>List</en-US>
+    </lang>
+    <lang id="word-chart">
+        <zh-CN>图表</zh-CN>
+        <en-US>Chart</en-US>
+    </lang>
+    <lang id="word-map">
+        <zh-CN>地图</zh-CN>
+        <en-US>Map</en-US>
+    </lang>
+    <lang id="word-country">
+        <zh-CN>国家</zh-CN>
+        <en-US>Country</en-US>
+    </lang>
+    <lang id="word-ipcount">
+        <zh-CN>IP数</zh-CN>
+        <en-US>IP Count</en-US>
+    </lang>
+    <lang id="word-connectcount">
+        <zh-CN>连接数</zh-CN>
+        <en-US>Connect Count</en-US>
+    </lang>
+    <lang id="word-usercount">
+        <zh-CN>用户数</zh-CN>
+        <en-US>User Count</en-US>
+    </lang>
+    <lang id="word-backtotop">
+        <zh-CN>回到顶部</zh-CN>
+        <en-US>Back to Top</en-US>
+    </lang>
+    <lang id="word-messagestat">
+        <zh-CN>消息统计</zh-CN>
+        <en-US>Message Stat</en-US>
+    </lang>
+    <lang id="word-statistics">
+        <zh-CN>统计</zh-CN>
+        <en-US>Statistics</en-US>
+    </lang>
+    <lang id="word-averagetimeconsuming">
+        <zh-CN>平均耗时</zh-CN>
+        <en-US>Average time consuming</en-US>
+    </lang>
+    <lang id="">
+        <zh-CN></zh-CN>
+        <en-US></en-US>
+    </lang>
+    <lang id="">
+        <zh-CN></zh-CN>
+        <en-US></en-US>
+    </lang>
+    <lang id="">
+        <zh-CN></zh-CN>
+        <en-US></en-US>
+    </lang>
+    <lang id="">
+        <zh-CN></zh-CN>
+        <en-US></en-US>
+    </lang>
+
+
+    <confirm>
+        <lang id="delete">
+            <zh-CN>你确定你要删除它吗？</zh-CN>
+            <en-US>Are you sure you want to delete it?</en-US>
+        </lang>
+        <lang id="start">
+            <zh-CN>你确定你要启动它吗？</zh-CN>
+            <en-US>Are you sure you want to start it?</en-US>
+        </lang>
+        <lang id="stop">
+            <zh-CN>你确定你要停止它吗？</zh-CN>
+            <en-US>Are you sure you want to stop it?</en-US>
+        </lang>
+    </confirm>
+
+    <reply>
+        <lang id="adderrortheclientcannotbefound">
+            <zh-CN>添加错误，找不到客户端</zh-CN>
+            <en-US>Add error, the client can not be found</en-US>
+        </lang>
+    </reply>
+
+    <charts>
+        <lang id="load">
+            <series>
+                <array id="0">
+                    <name>
+                        <zh-CN>平均负载 1</zh-CN>
+                        <en-US>Load avg 1</en-US>
+                    </name>
+                </array>
+                <array id="1">
+                    <name>
+                        <zh-CN>平均负载 5</zh-CN>
+                        <en-US>Load avg 5</en-US>
+                    </name>
+                </array>
+                <array id="2">
+                    <name>
+                        <zh-CN>平均负载 15</zh-CN>
+                        <en-US>Load avg 15</en-US>
+                    </name>
+                </array>
+            </series>
+        </lang>
+        <lang id="cpu">
+            <series>
+                <array id="0">
+                    <name>
+                        <zh-CN>处理器</zh-CN>
+                        <en-US>CPU</en-US>
+                    </name>
+                </array>
+            </series>
+        </lang>
+        <lang id="memory">
+            <series>
+                <array id="0">
+                    <name>
+                        <zh-CN>虚拟内存</zh-CN>
+                        <en-US>Virtual memory</en-US>
+                    </name>
+                </array>
+                <array id="1">
+                    <name>
+                        <zh-CN>交换空间</zh-CN>
+                        <en-US>Swap memory</en-US>
+                    </name>
+                </array>
+            </series>
+        </lang>
+        <lang id="connections">
+            <series>
+                <array id="0">
+                    <name>TCP</name>
+                </array>
+                <array id="1">
+                    <name>UDP</name>
+                </array>
+            </series>
+        </lang>
+        <lang id="bandwidth">
+            <series>
+                <array id="0">
+                    <name>
+                        <zh-CN>入口</zh-CN>
+                        <en-US>In</en-US>
+                    </name>
+                </array>
+                <array id="1">
+                    <name>
+                        <zh-CN>出口</zh-CN>
+                        <en-US>Out</en-US>
+                    </name>
+                </array>
+            </series>
+        </lang>
+        <lang id="message-rps">
+            <series>
+                <array id="0">
+                    <name>
+                        <zh-CN>请求Rps</zh-CN>
+                        <en-US>Request Rps</en-US>
+                    </name>
+                </array>
+                <array id="1">
+                    <name>
+                        <zh-CN>返回Rps</zh-CN>
+                        <en-US>Response Rps</en-US>
+                    </name>
+                </array>
+            </series>
+        </lang>
+        <lang id="socket-connection">
+            <series>
+                <array id="0">
+                    <name>
+                        <zh-CN>连接数</zh-CN>
+                        <en-US>Connect Count</en-US>
+                    </name>
+                </array>
+            </series>
+        </lang>
+        <lang id="message-bandwidth">
+            <series>
+                <array id="0">
+                    <name>
+                        <zh-CN>入口</zh-CN>
+                        <en-US>In</en-US>
+                    </name>
+                </array>
+                <array id="1">
+                    <name>
+                        <zh-CN>出口</zh-CN>
+                        <en-US>Out</en-US>
+                    </name>
+                </array>
+            </series>
+        </lang>
+        <lang id="socket-close-type">
+            <legend>
+                <data>
+                    <array id="0">
+                        <zh-CN>客户端Fin</zh-CN>
+                        <en-US>Client Fin</en-US>
+                    </array>
+                    <array id="1">
+                        <zh-CN>客户端Rst</zh-CN>
+                        <en-US>Client Rst</en-US>
+                    </array>
+                    <array id="2">
+                        <zh-CN>服务器Fin</zh-CN>
+                        <en-US>Server Fin</en-US>
+                    </array>
+                    <array id="3">
+                        <zh-CN>服务器Rst</zh-CN>
+                        <en-US>Server Rst</en-US>
+                    </array>
+                    <array id="4">
+                        <zh-CN>超时</zh-CN>
+                        <en-US>Time Out</en-US>
+                    </array>
+                </data>
+            </legend>
+            <series>
+                <array id="0">
+                    <name>
+                        <zh-CN>Socket关闭类型</zh-CN>
+                        <en-US>Socket Close Type</en-US>
+                    </name>
+                    <data>
+                        <array id="0">
+                            <name>
+                                <zh-CN>客户端Fin</zh-CN>
+                                <en-US>Client Fin</en-US>
+                            </name>
+                        </array>
+                        <array id="1">
+                            <name>
+                                <zh-CN>客户端Rst</zh-CN>
+                                <en-US>Client Rst</en-US>
+                            </name>
+                        </array>
+                        <array id="2">
+                            <name>
+                                <zh-CN>服务器Fin</zh-CN>
+                                <en-US>Server Fin</en-US>
+                            </name>
+                        </array>
+                        <array id="3">
+                            <name>
+                                <zh-CN>服务器Rst</zh-CN>
+                                <en-US>Server Rst</en-US>
+                            </name>
+                        </array>
+                        <array id="4">
+                            <name>
+                                <zh-CN>超时</zh-CN>
+                                <en-US>Time Out</en-US>
+                            </name>
+                        </array>
+                    </data>
+                </array>
+            </series>
+        </lang>
+        <lang id="socket-connect-type">
+            <legend>
+                <data>
+                    <array id="0">
+                        <zh-CN>登录</zh-CN>
+                        <en-US>Login</en-US>
+                    </array>
+                    <array id="1">
+                        <zh-CN>重连</zh-CN>
+                        <en-US>Reconnect</en-US>
+                    </array>
+                </data>
+            </legend>
+            <series>
+                <array id="0">
+                    <name>
+                        <zh-CN>连接类型</zh-CN>
+                        <en-US>Connect Type</en-US>
+                    </name>
+                    <data>
+                        <array id="0">
+                            <name>
+                                <zh-CN>登录</zh-CN>
+                                <en-US>Login</en-US>
+                            </name>
+                        </array>
+                        <array id="1">
+                            <name>
+                                <zh-CN>重连</zh-CN>
+                                <en-US>Reconnect</en-US>
+                            </name>
+                        </array>
+                    </data>
+                </array>
+            </series>
+        </lang>
+        <lang id="socket-duration">
+            <legend>
+                <data>
+                    <array id="0">
+                        <zh-CN>0-1m</zh-CN>
+                        <en-US>0-1m</en-US>
+                    </array>
+                    <array id="1">
+                        <zh-CN>1-10m</zh-CN>
+                        <en-US>1-10m</en-US>
+                    </array>
+                    <array id="2">
+                        <zh-CN>10-60m</zh-CN>
+                        <en-US>10-60m</en-US>
+                    </array>
+                    <array id="3">
+                        <zh-CN>60-99999m</zh-CN>
+                        <en-US>60-99999m</en-US>
+                    </array>
+                </data>
+            </legend>
+            <series>
+                <array id="0">
+                    <name>
+                        <zh-CN>时长</zh-CN>
+                        <en-US>Duration</en-US>
+                    </name>
+                    <data>
+                        <array id="0">
+                            <name>
+                                <zh-CN>0-1m</zh-CN>
+                                <en-US>0-1m</en-US>
+                            </name>
+                        </array>
+                        <array id="1">
+                            <name>
+                                <zh-CN>1-10m</zh-CN>
+                                <en-US>1-10m</en-US>
+                            </name>
+                        </array>
+                        <array id="2">
+                            <name>
+                                <zh-CN>10-60m</zh-CN>
+                                <en-US>10-60m</en-US>
+                            </name>
+                        </array>
+                        <array id="3">
+                            <name>
+                                <zh-CN>60-99999m</zh-CN>
+                                <en-US>60-99999m</en-US>
+                            </name>
+                        </array>
+                    </data>
+                </array>
+            </series>
+        </lang>
+        <lang id="socket-message-count">
+            <legend>
+                <data>
+                    <array id="0">
+                        <zh-CN>0</zh-CN>
+                        <en-US>0</en-US>
+                    </array>
+                    <array id="1">
+                        <zh-CN>1-100</zh-CN>
+                        <en-US>1-100</en-US>
+                    </array>
+                    <array id="2">
+                        <zh-CN>100-1000</zh-CN>
+                        <en-US>100-1000</en-US>
+                    </array>
+                    <array id="3">
+                        <zh-CN>1000-10000</zh-CN>
+                        <en-US>1000-10000</en-US>
+                    </array>
+                    <array id="4">
+                        <zh-CN>10000-999999999</zh-CN>
+                        <en-US>10000-999999999</en-US>
+                    </array>
+                </data>
+            </legend>
+            <series>
+                <array id="0">
+                    <name>
+                        <zh-CN>消息个数</zh-CN>
+                        <en-US>Message Count</en-US>
+                    </name>
+                    <data>
+                        <array id="0">
+                            <name>
+                                <zh-CN>0</zh-CN>
+                                <en-US>0</en-US>
+                            </name>
+                        </array>
+                        <array id="1">
+                            <name>
+                                <zh-CN>1-100</zh-CN>
+                                <en-US>1-100</en-US>
+                            </name>
+                        </array>
+                        <array id="2">
+                            <name>
+                                <zh-CN>100-1000</zh-CN>
+                                <en-US>100-1000</en-US>
+                            </name>
+                        </array>
+                        <array id="3">
+                            <name>
+                                <zh-CN>1000-10000</zh-CN>
+                                <en-US>1000-10000</en-US>
+                            </name>
+                        </array>
+                        <array id="4">
+                            <name>
+                                <zh-CN>10000-999999999</zh-CN>
+                                <en-US>10000-999999999</en-US>
+                            </name>
+                        </array>
+                    </data>
+                </array>
+            </series>
+        </lang>
+    </charts>
+</content>

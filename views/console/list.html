@@ -1,0 +1,108 @@
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title" id="console-title">
+                    <h5 langtag="word-log"></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content no-padding">
+                    <form class="form-inline" id="console-filter-form">
+                        <div class="col-sm-2">
+                            <input class="form-control" type="text" name="filter" placeholder="" langtag="word-filter">
+                        </div>
+                        <div class="col-sm-2">
+                            <select class="form-control" name="type">
+                                <option value="3" langtag="word-socketcloseopen"></option>
+                                <option value="0" langtag="word-baselog"></option>
+                                <option value="4" langtag="word-detaillog"></option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-success" type="button" onclick="submitFilter($('#console-filter-form').serializeArray())">
+                                <i class="fa fa-fw fa-lg fa-check-circle"></i> <span langtag="word-refresh"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <ul class="list-group">
+                        <code class="col-lg-12 text-left">
+                            <pre id="console-log"></pre>
+                        </code>
+
+                    </ul>
+                    <a href="#console-title" class="btn btn-primary backTop" langtag="word-backtotop"></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<style>
+    /*回到顶部，固定在左下角*/
+    .backTop{
+        position: fixed;
+        right: 10px;
+        bottom: 50px;
+    }
+</style>
+
+<script>
+
+    //提交过滤
+    function submitFilter (data){
+        console.log("过滤器数据："+data)
+        $.ajax({
+            type: "POST",
+            url:"{{.web_base_url}}/console/filter",
+            data:data,
+            success:function (res){
+                console.log("过滤返回:"+res)
+                // document.location.reload();
+            }
+        })
+    }
+
+    var index = 0
+    $(document).ready(function () {
+        setInterval(function () {
+            $.ajax({
+                type: "POST",
+                url: "{{.web_base_url}}/console/list",
+                data: {index: index},
+                success: function (result) {
+                    $.each(result, function (index, element) {
+                        if (element.index > index) {
+                            index = element.index
+                        }
+                        $("#console-log").append(element.index + "\t" + element.time + "\t" + "[" + element.flow + "]" + "\t");
+                        if (element.type==1){
+                            $("#console-log").append("<strong  class='alert'>"+element.log1 + "</strong>\r\n");
+                        }else if (element.type==2){
+                            $("#console-log").append("<strong class='alert-danger'>"+element.log1 + "</strong>\r\n");
+                        }else {
+                            $("#console-log").append(element.log1 + "\r\n");
+                        }
+                        if (element.log2 !=null &&element.log2!= ""){
+                            $("#console-log").append("\t\t\t\t\t\t\t\t\t\t<small class='bg-white'>"+element.log2+"</small>\r\n");
+                        }
+
+
+                    });
+                    // console.log(result)
+                }
+            });
+        }, 1000); // refresh every 5 seconds
+    });
+
+</script>

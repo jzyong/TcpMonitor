@@ -1,0 +1,10 @@
+{
+  "id": 1,
+  "databaseUrl": "mongodb://admin:123456@127.0.0.1:27017/?maxPoolSize=1&connectTimeoutMS=30000&socketTimeoutMS=30000",
+  "databaseName": "net",
+  "profile": "develop",
+  "logLevel": "DEBUG",
+  "BPFFilter": "tcp and port 7050",
+  "snapLen": 655360,
+  "device": "\\Device\\NPF_Loopback"
+}

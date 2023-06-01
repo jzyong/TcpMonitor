@@ -1,0 +1,243 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-message"></h5>
+
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="ibox-content">
+                        <table id="messageStatTable"></table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $('#messageStatTable').bootstrapTable({
+        locale:"zh-CN", //中午简体显示
+        toolbar: "#toolbar",
+        method: 'post', // 服务器数据的请求方式 get or post
+        url: "{{.web_base_url}}/message/list", // 服务器数据的加载地址
+        contentType: "application/x-www-form-urlencoded",
+        striped: true, // 设置为true会有隔行变色效果
+        search: true,
+        showHeader: true,
+        showColumns: true,
+        showRefresh: true,
+        pagination: true,//分页
+        sidePagination: 'server',//服务器端分页
+        pageNumber: 1,
+        pageList: [5, 10, 20, 50],//分页步进值
+        detailView: true,
+        smartDisplay: true, // 智能显示 pagination 和 cardview 等
+        queryParams: function (params) {
+            return {
+                limit: params.limit,
+                offset: params.offset,
+                search: params.search,
+                sort: params.sort,
+                order: params.order
+            };
+        },
+        onExpandRow: function () {
+            $('body').setLang('.detail-view');
+        },
+        onPostBody: function (data) {
+            if ($(this)[0].locale != undefined) $('body').setLang('#messageStatTable');
+        },
+        detailFormatter: function (index, row, element) {
+            return '<b>总执行时间</b>: ' + row.totalTime + '&emsp;'
+                + '<b>最小延迟</b>: ' + row.delayMin + '&emsp;'
+                + '<b>成功数</b>: ' + row.successCount + '&emsp;'
+                + '<b>开始时间</b>: ' + formatTimeStamp(row.startTime) + '&emsp;'
+                + '<b>结束时间</b>: ' + formatTimeStamp(row.endTime) + '&emsp;'
+                + '<b>字节最小值</b>: ' + row.sizeMin + '&emsp;'
+        },
+        //表格的列
+        columns: [
+            {
+                field: 'messageId',//域值
+                title: '消息ID',//标题
+                halign: 'center',
+                visible: true,//false表示不显示
+                sortable: true//启用排序
+            },
+            {
+                field: 'messageName',//域值
+                title: '消息名称',//标题
+                halign: 'center',
+                visible: true,//false表示不显示
+                sortable: true//启用排序
+            },
+            {
+                field: 'totalTime',//域值
+                title: '总执行时间',//标题
+                halign: 'center',
+                visible: false,//false表示不显示
+                sortable: true//启用排序
+            },
+            {
+                field: 'delayAverage',//域值
+                title: '平均延迟',//标题
+                halign: 'center',
+                visible: true,//false表示不显示
+                sortable: true,//启用排序
+                formatter: function (value, row, index) {
+                    if (value > 100) {
+                        return '<span style="color: red">' + value + '</span>'
+                    }
+                    return value
+                }
+            },
+            {
+                field: 'delayMin',//域值
+                title: '最小延迟',//标题
+                halign: 'center',
+                visible: false//false表示不显示
+            },
+            {
+                field: 'delayMax',//域值
+                title: '最大延迟',//标题
+                halign: 'center',
+                visible: true,//false表示不显示
+                sortable: true//启用排序
+            },
+            {
+                field: 'count',//域值
+                title: '数量',//标题
+                halign: 'center',
+                visible: true,//false表示不显示
+                sortable: true//启用排序
+            },
+            {
+                field: 'failCount',//域值
+                title: '失败数',//标题
+                halign: 'center',
+                visible: true,//false表示不显示
+                sortable: true//启用排序
+            },
+            {
+                field: 'failRate',//域值
+                title: '失败率',//内容
+                halign: 'center',
+                visible: true,//false表示不显示
+                sortable: true,//启用排序
+                formatter: function (value, row, index) {
+                    let failPercent = value * 100
+                    if (failPercent > 10) {
+                        return '<span style="color: red">' + failPercent.toFixed(2) + '%</span>'
+                    }
+                    return failPercent.toFixed(2) + '%'
+                }
+            },
+            {
+                field: 'successCount',//域值
+                title: '成功数',//内容
+                halign: 'center',
+                visible: false//false表示不显示
+            },
+            {
+                field: 'requestRepeatCount',//域值
+                title: '重复请求数',//内容
+                halign: 'center',
+                visible: true,//false表示不显示
+                sortable: true//启用排序
+            },
+            {
+                field: 'responseRepeatCount',//域值
+                title: '重复返回数',//内容
+                halign: 'center',
+                visible: true,//false表示不显示
+                sortable: true//启用排序
+            },
+            {
+                field: 'sizeTotal',//域值
+                title: '总大小',//内容
+                halign: 'center',
+                visible: true,//false表示不显示
+                sortable: true,//启用排序
+                formatter: function (value, row, index) {
+                    return changeunit(value)
+                }
+            },
+            {
+                field: 'sizeAverage',//域值
+                title: '字节平均值',//内容
+                halign: 'center',
+                visible: true,//false表示不显示
+                sortable: true,//启用排序
+                formatter: function (value, row, index) {
+                    return changeunit(value)
+                }
+            },
+            {
+                field: 'sizeMin',//域值
+                title: '字节最小值',//内容
+                halign: 'center',
+                visible: false,//false表示不显示
+                sortable: false,//启用排序
+                formatter: function (value, row, index) {
+                    return changeunit(value)
+                }
+            },
+            {
+                field: 'sizeMax',//域值
+                title: '字节最大值',//内容
+                halign: 'center',
+                visible: true,//false表示不显示
+                sortable: true,//启用排序
+                formatter: function (value, row, index) {
+                    return changeunit(value)
+                }
+            },
+            {
+                field: 'startTime',//域值
+                title: '开始时间',//内容
+                halign: 'center',
+                visible: false,//false表示不显示
+                sortable: true,//启用排序
+                formatter: function (value, row, index) {
+                    return formatTimeStamp(value)
+                }
+            },
+            {
+                field: 'endTime',//域值
+                title: '结束时间',//内容
+                halign: 'center',
+                visible: false,//false表示不显示
+                sortable: true,//启用排序
+                formatter: function (value, row, index) {
+                    return formatTimeStamp(value)
+                }
+            },
+            {
+                field: 'rps',//域值
+                title: 'RPS',//内容
+                halign: 'center',
+                visible: true,//false表示不显示
+                sortable: true,//启用排序
+                formatter: function (value, row, index) {
+                    return value.toFixed(3)
+                }
+            }
+
+        ]
+    });
+
+
+</script>

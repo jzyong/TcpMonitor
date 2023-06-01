@@ -1,0 +1,29 @@
+syntax = "proto3";
+package proto;
+option go_package = "/message";
+
+//用户登录
+message UserLoginRequest{
+  string account =1; //账号
+  string password=2; //密码
+  string imei=3; //设备码
+}
+//用户登录
+message UserLoginResponse{
+  int64 userId = 1; //用户id
+}
+
+//重连
+message ReconnectRequest{
+  string account =1; //账号
+  string password=2; //密码
+  string imei=3; //设备码
+  int64 userId = 4; //用户id
+}
+//重连
+message ReconnectResponse{
+  int64 userId = 1; //用户id
+}
+
+
+

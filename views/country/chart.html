@@ -1,0 +1,184 @@
+<div class="wrapper wrapper-content">
+    <!--用户数，ip数、连接数-->
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-usercount"></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div id="user-count" style="height: 300px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-ipcount"></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div id="ip-count" style="height: 300px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-connectcount"></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div id="connect-count" style="height: 300px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--延迟、重传率、平均连接时间-->
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-rtt"></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div id="rtt" style="height: 300px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-retransmission"></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div id="retransmission" style="height: 300px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 langtag="word-tcpconnectiontimeaverage"></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div id="connect-time" style="height: 300px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+    var userCountChart = echarts.init(document.getElementById('user-count')); //用户数量
+    var ipCountChart = echarts.init(document.getElementById('ip-count')); //IP数量
+    var connectCountChart = echarts.init(document.getElementById('connect-count')); //连接数量
+    var rttChart = echarts.init(document.getElementById('rtt')); //往返延迟
+    var retransmissionChart = echarts.init(document.getElementById('retransmission')); //重传率
+    var connectTimeChart = echarts.init(document.getElementById('connect-time')); //连接连接时间
+
+    //ajax 请求 TODO
+    $.ajax({
+        type:"POST",
+        url: "{{.web_base_url}}/country/chart",
+        data:{type:{{.type}}},
+        success:function (result){
+            showBar(result.countries,result.userCounts,userCountChart,'数量')
+            showBar(result.countries,result.ipCounts,ipCountChart,'数量')
+            showBar(result.countries,result.connectCounts,connectCountChart,'数量')
+            showBar(result.countries,result.rtts,rttChart,'时间ms')
+            showBar(result.countries,result.retransmissions,retransmissionChart,"百分比")
+            showBar(result.countries,result.connectTimes,connectTimeChart,"时间s")
+        }
+    })
+
+
+    //显示条形图
+    function showBar(xAxisData,seriesData,chart,name) {
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '' //bootstrap标签设置，不在重复设置
+            },
+            tooltip: {},
+            legend: {
+                data: [name]
+            },
+            xAxis: {
+                data: xAxisData
+            },
+            yAxis: {},
+            series: [
+                {
+                    name: name,
+                    type: 'bar',
+                    data: seriesData
+                }
+            ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        chart.setOption(option);
+    }
+
+
+
+
+    // 重新设置大小
+    window.addEventListener('resize', () => {
+        userCountChart.resize()
+        ipCountChart.resize()
+        connectCountChart.resize()
+        rttChart.resize()
+        retransmissionChart.resize()
+        connectTimeChart.resize()
+    });
+</script>
