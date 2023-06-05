@@ -8,8 +8,10 @@ You need to modify the TCP packet logic and application statistics by yourself.
 | Directory | Description                                       |
 |-----------|---------------------------------------------------|
 | config    | Config file                                       |
+| docs      | html document                                     |
 | manager   | Network core logic                                |
 | mode      | Core logical entity                               |
+| res       | markdown document                                 |
 | service   | Customize the specific service logic(need modify) |
 | static    | web js,css,image(need modify)                     |
 | view      | Web page(need modify)                             |
@@ -36,9 +38,8 @@ You need to modify the TCP packet logic and application statistics by yourself.
 
 ### TODO
 1. 使用文档编写（截图）
-2. 测试服务器和客户端(protobuf)
-3. GitHub page生成
-4. 包头封装文档
+2.GitHub page生成
+3.包头封装文档
 
 
 
