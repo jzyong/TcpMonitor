@@ -56,7 +56,7 @@ func (m *SocketController) Message() {
 			continue
 		}
 		color := "green"
-		if gateMessage.MessageId/1000000 == 5 {
+		if gateMessage.MessageId%2 == 0 {
 			color = "blue"
 		}
 		//<strong style="color: #3dc7ab">ss</strong>

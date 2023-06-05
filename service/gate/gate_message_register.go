@@ -13,4 +13,6 @@ func init() {
 	MessageDecoder[int32(message.MID_UserLoginRes)] = &message.UserLoginResponse{}
 	MessageDecoder[int32(message.MID_ReconnectReq)] = &message.UserLoginResponse{}
 	MessageDecoder[int32(message.MID_ReconnectRes)] = &message.ReconnectResponse{}
+	MessageDecoder[int32(message.MID_HeartReq)] = &message.HeartRequest{}
+	MessageDecoder[int32(message.MID_HeartRes)] = &message.HeartResponse{}
 }
