@@ -35,8 +35,10 @@ You need to modify the TCP packet logic and application statistics by yourself.
 * [nps](https://github.com/ehang-io/nps) web template reference
 
 ### TODO
-1. 文档编写
+1. 使用文档编写（截图）
 2. 测试服务器和客户端(protobuf)
+3. GitHub page生成
+4. 
 
 
 

@@ -5,7 +5,6 @@ import (
 	"encoding/binary"
 	"github.com/google/gopacket"
 	"github.com/google/gopacket/tcpassembly"
-	"github.com/google/gopacket/tcpassembly/tcpreader"
 	config2 "github.com/jzyong/TcpMonitor/config"
 	"github.com/jzyong/TcpMonitor/manager"
 	"github.com/jzyong/TcpMonitor/mode"
@@ -14,7 +13,6 @@ import (
 	"github.com/jzyong/golib/util"
 	"google.golang.org/protobuf/proto"
 	"io"
-	"time"
 )
 
 //装配的消息不是有序的，展示列表顺序不可信
@@ -28,14 +26,14 @@ type GateStreamFactory struct {
 // GateStream 处理收到的消息包
 type GateStream struct {
 	net, transport gopacket.Flow
-	r              tcpreader.ReaderStream
+	r              mode.ReaderStream
 }
 
 func (h *GateStreamFactory) New(net, transport gopacket.Flow) tcpassembly.Stream {
 	stream := &GateStream{
 		net:       net,
 		transport: transport,
-		r:         tcpreader.NewReaderStream(),
+		r:         mode.NewReaderStream(),
 	}
 	go stream.run() // Important... we must guarantee that data from the reader stream is read.
 
@@ -59,6 +57,7 @@ func (s *GateStream) run() {
 			break
 		}
 		var msgLength = binary.LittleEndian.Uint32(msgLengthBytes)
+		var time = reader.GetCurrentTime()
 		//前面是标识位
 		msgLength = msgLength & 0xFFFFF
 		msgData := make([]byte, msgLength)
@@ -93,7 +92,7 @@ func (s *GateStream) run() {
 			continue
 		}
 
-		gateMessage := &GateMessage{MessageId: messageId, Seq: seq, Ack: ack, Length: msgLength, Bytes: data, Time: time.Now().UnixMilli()}
+		gateMessage := &GateMessage{MessageId: messageId, Seq: seq, Ack: ack, Length: msgLength, Bytes: data, Time: time.UnixMilli()}
 
 		if config2.ApplicationConfigInstance.UnmarshalPacket {
 			message := MessageDecoder[messageId]
