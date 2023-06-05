@@ -138,6 +138,44 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="本地运行"><a class="header" href="#本地运行">本地运行</a></h1>
+<p>  <code>service/gate/example</code>目录提供了示例TCP服务器客户端，可直接本地运行。需要提前安装go和mongodb运行环境。</p>
+<h3 id="安装mongodb"><a class="header" href="#安装mongodb">安装MongoDB</a></h3>
+<pre><code class="language-shell"># 1. 运行镜像
+docker run -itd --name mongo-3.6.23 --restart=always -p 27017:27017 mongo:3.6.23 --auth
+
+# 2. 进入容器创建账号
+docker exec -it mongo-3.6.23 mongo admin
+# 创建一个名为 admin，密码为 123456 的用户。
+db.createUser({ user:'admin',pwd:'123456',roles:[ { role:'userAdminAnyDatabase', db: 'admin'},&quot;readWriteAnyDatabase&quot;]});
+# 尝试使用上面创建的用户信息进行连接。
+db.auth('admin', '123456')
+
+# 3. 连接地址
+mongodb://admin:123456@192.168.110.16:27017/?authSource=admin&amp;readPreference=primary&amp;appname=MongoDB%20Compass&amp;ssl=false
+</code></pre>
+<h3 id="运行项目"><a class="header" href="#运行项目">运行项目</a></h3>
+<p><strong>项目地址：</strong><a href="http://127.0.0.1:5041">http://127.0.0.1:5041</a><br />
+<strong>账号：</strong> admin<br />
+<strong>密码：</strong> 123</p>
+<pre><code class="language-shell"># 1. 克隆项目
+git clone https://github.com/jzyong/TcpMonitor.git
+
+# 2. 构建项目
+cd TcpMonitor
+go build
+
+# 3. 查看网卡及配置config/ApplicationConfig_develop_gate.json 中的device
+TcpMonitor.exe -m device
+  [INFO]net_manager.go(105)--&gt; 网卡：\Device\NPF_Loopback ==&gt; Adapter for loopback traffic capture
+
+# 4 运行网络工具 访问：http://127.0.0.1:5041 
+TcpMonitor.exe --config config/ApplicationConfig_develop_gate.json
+</code></pre>
+<h3 id="运行tcp服务器客户端"><a class="header" href="#运行tcp服务器客户端">运行TCP服务器、客户端</a></h3>
+<pre><code class="language-shell"># 1.运行测试服务器代码
+cd service\gate\example
+go test
+</code></pre>
 
                     </main>
 
