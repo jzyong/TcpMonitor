@@ -1,4 +1,4 @@
-# 本地运行
+# Linux运行
 &emsp;&emsp;`service/gate/example`目录提供了示例TCP服务器客户端，可直接本地运行。需要提前安装go和mongodb运行环境。
 
 
@@ -27,17 +27,18 @@ git clone https://github.com/jzyong/TcpMonitor.git
 
 # 2. 构建项目
 cd TcpMonitor
+CGO_ENABLED=0
+GOOS=linux
+GOARCH=amd64
 go build
 
 # 3. 查看网卡及配置config/ApplicationConfig_develop_gate.json 中的device
-TcpMonitor.exe -m device
-  [INFO]net_manager.go(105)--> 网卡：\Device\NPF_Loopback ==> Adapter for loopback traffic capture
+./TcpMonitor -m device
+  [INFO]net_manager.go(105)--> 网卡：eth0 ==>
 
 # 4 运行网络工具 访问：http://127.0.0.1:5041 
-TcpMonitor.exe --config config/ApplicationConfig_develop_gate.json
+./TcpMonitor --config config/ApplicationConfig_develop_gate.json
 ```
-![查看网卡列表](../img/查看网卡列表.png)
-
 
 ### 运行TCP服务器、客户端
 ```shell
@@ -45,10 +46,10 @@ TcpMonitor.exe --config config/ApplicationConfig_develop_gate.json
 cd service\gate\example
 go test
 ```
-![测试服务器客户端](../img/测试服务器客户端.png)
 
 
 ## 常见问题
-**1. couldn't load wpcap.dll**  
-去[官网](https://npcap.com/)下载最新的Npcap  
-参考文档：<https://blog.csdn.net/itopit/article/details/125075447>
+**1. error while loading shared libraries: libpcap.so.1: cannot open shared object file: No such file or directory**
+```shell
+sudo yum install libpcap
+```

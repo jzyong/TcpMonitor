@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="doc/简介.html" class="active">简介</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="doc/本地运行.html"><strong aria-hidden="true">1.</strong> 本地运行</a></li><li class="chapter-item expanded "><a href="doc/Web使用.html"><strong aria-hidden="true">2.</strong> Web使用</a></li><li class="chapter-item expanded "><a href="doc/实现原理.html"><strong aria-hidden="true">3.</strong> 实现原理</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="doc/简介.html" class="active">简介</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="doc/本地运行.html"><strong aria-hidden="true">1.</strong> 本地运行</a></li><li class="chapter-item expanded "><a href="doc/Linux运行.html"><strong aria-hidden="true">2.</strong> Linux运行</a></li><li class="chapter-item expanded "><a href="doc/Web使用.html"><strong aria-hidden="true">3.</strong> Web使用</a></li><li class="chapter-item expanded "><a href="doc/实现原理.html"><strong aria-hidden="true">4.</strong> 实现原理</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -142,6 +142,7 @@
 因为每个项目TCP协议规范不一致，因此次项目不能直接使用，需要自行修改包封装逻辑和统计逻辑。</p>
 <ul>
 <li><a href="%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C.html">本地运行</a></li>
+<li><a href="Linux%E8%BF%90%E8%A1%8C.html">Linux运行</a></li>
 <li><a href="Web%E4%BD%BF%E7%94%A8.html">Web使用</a></li>
 <li><a href="%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.html">实现原理</a></li>
 </ul>
@@ -166,22 +167,6 @@
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script type="text/javascript">
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
         <script type="text/javascript">
             window.playground_copyable = true;
         </script>

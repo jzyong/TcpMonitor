@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>简介 - TCP网络监控、分析、统计</title>
+        <title>Linux运行 - TCP网络监控、分析、统计</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="Application-oriented customized TCP message interception, monitoring, and statistics.">
@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../doc/简介.html" class="active">简介</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../doc/本地运行.html"><strong aria-hidden="true">1.</strong> 本地运行</a></li><li class="chapter-item expanded "><a href="../doc/Linux运行.html"><strong aria-hidden="true">2.</strong> Linux运行</a></li><li class="chapter-item expanded "><a href="../doc/Web使用.html"><strong aria-hidden="true">3.</strong> Web使用</a></li><li class="chapter-item expanded "><a href="../doc/实现原理.html"><strong aria-hidden="true">4.</strong> 实现原理</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../doc/简介.html">简介</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../doc/本地运行.html"><strong aria-hidden="true">1.</strong> 本地运行</a></li><li class="chapter-item expanded "><a href="../doc/Linux运行.html" class="active"><strong aria-hidden="true">2.</strong> Linux运行</a></li><li class="chapter-item expanded "><a href="../doc/Web使用.html"><strong aria-hidden="true">3.</strong> Web使用</a></li><li class="chapter-item expanded "><a href="../doc/实现原理.html"><strong aria-hidden="true">4.</strong> 实现原理</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -137,21 +137,61 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="简介"><a class="header" href="#简介">简介</a></h1>
-<p>  面向应用的自定义TCP消息拦截、分析、统计工具。
-因为每个项目TCP协议规范不一致，因此次项目不能直接使用，需要自行修改包封装逻辑和统计逻辑。</p>
-<ul>
-<li><a href="%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C.html">本地运行</a></li>
-<li><a href="Linux%E8%BF%90%E8%A1%8C.html">Linux运行</a></li>
-<li><a href="Web%E4%BD%BF%E7%94%A8.html">Web使用</a></li>
-<li><a href="%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.html">实现原理</a></li>
-</ul>
+                        <h1 id="linux运行"><a class="header" href="#linux运行">Linux运行</a></h1>
+<p>  <code>service/gate/example</code>目录提供了示例TCP服务器客户端，可直接本地运行。需要提前安装go和mongodb运行环境。</p>
+<h3 id="安装mongodb"><a class="header" href="#安装mongodb">安装MongoDB</a></h3>
+<pre><code class="language-shell"># 1. 运行镜像
+docker run -itd --name mongo-3.6.23 --restart=always -p 27017:27017 mongo:3.6.23 --auth
+
+# 2. 进入容器创建账号
+docker exec -it mongo-3.6.23 mongo admin
+# 创建一个名为 admin，密码为 123456 的用户。
+db.createUser({ user:'admin',pwd:'123456',roles:[ { role:'userAdminAnyDatabase', db: 'admin'},&quot;readWriteAnyDatabase&quot;]});
+# 尝试使用上面创建的用户信息进行连接。
+db.auth('admin', '123456')
+
+# 3. 连接地址
+mongodb://admin:123456@192.168.110.16:27017/?authSource=admin&amp;readPreference=primary&amp;appname=MongoDB%20Compass&amp;ssl=false
+</code></pre>
+<h3 id="运行项目"><a class="header" href="#运行项目">运行项目</a></h3>
+<p><strong>项目地址：</strong><a href="http://127.0.0.1:5041">http://127.0.0.1:5041</a><br />
+<strong>账号：</strong> admin<br />
+<strong>密码：</strong> 123</p>
+<pre><code class="language-shell"># 1. 克隆项目
+git clone https://github.com/jzyong/TcpMonitor.git
+
+# 2. 构建项目
+cd TcpMonitor
+CGO_ENABLED=0
+GOOS=linux
+GOARCH=amd64
+go build
+
+# 3. 查看网卡及配置config/ApplicationConfig_develop_gate.json 中的device
+./TcpMonitor -m device
+  [INFO]net_manager.go(105)--&gt; 网卡：eth0 ==&gt;
+
+# 4 运行网络工具 访问：http://127.0.0.1:5041 
+./TcpMonitor --config config/ApplicationConfig_develop_gate.json
+</code></pre>
+<h3 id="运行tcp服务器客户端"><a class="header" href="#运行tcp服务器客户端">运行TCP服务器、客户端</a></h3>
+<pre><code class="language-shell"># 1.运行测试服务器代码
+cd service\gate\example
+go test
+</code></pre>
+<h2 id="常见问题"><a class="header" href="#常见问题">常见问题</a></h2>
+<p><strong>1. error while loading shared libraries: libpcap.so.1: cannot open shared object file: No such file or directory</strong></p>
+<pre><code class="language-shell">sudo yum install libpcap
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="next" href="../doc/本地运行.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="prev" href="../doc/本地运行.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../doc/Web使用.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -160,7 +200,10 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="next" href="../doc/本地运行.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="prev" href="../doc/本地运行.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../doc/Web使用.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

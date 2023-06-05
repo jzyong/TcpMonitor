@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../doc/简介.html">简介</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../doc/本地运行.html" class="active"><strong aria-hidden="true">1.</strong> 本地运行</a></li><li class="chapter-item expanded "><a href="../doc/Web使用.html"><strong aria-hidden="true">2.</strong> Web使用</a></li><li class="chapter-item expanded "><a href="../doc/实现原理.html"><strong aria-hidden="true">3.</strong> 实现原理</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../doc/简介.html">简介</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../doc/本地运行.html" class="active"><strong aria-hidden="true">1.</strong> 本地运行</a></li><li class="chapter-item expanded "><a href="../doc/Linux运行.html"><strong aria-hidden="true">2.</strong> Linux运行</a></li><li class="chapter-item expanded "><a href="../doc/Web使用.html"><strong aria-hidden="true">3.</strong> Web使用</a></li><li class="chapter-item expanded "><a href="../doc/实现原理.html"><strong aria-hidden="true">4.</strong> 实现原理</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -171,11 +171,17 @@ TcpMonitor.exe -m device
 # 4 运行网络工具 访问：http://127.0.0.1:5041 
 TcpMonitor.exe --config config/ApplicationConfig_develop_gate.json
 </code></pre>
+<p><img src="../img/%E6%9F%A5%E7%9C%8B%E7%BD%91%E5%8D%A1%E5%88%97%E8%A1%A8.png" alt="查看网卡列表" /></p>
 <h3 id="运行tcp服务器客户端"><a class="header" href="#运行tcp服务器客户端">运行TCP服务器、客户端</a></h3>
 <pre><code class="language-shell"># 1.运行测试服务器代码
 cd service\gate\example
 go test
 </code></pre>
+<p><img src="../img/%E6%B5%8B%E8%AF%95%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%A2%E6%88%B7%E7%AB%AF.png" alt="测试服务器客户端" /></p>
+<h2 id="常见问题"><a class="header" href="#常见问题">常见问题</a></h2>
+<p><strong>1. couldn't load wpcap.dll</strong><br />
+去<a href="https://npcap.com/">官网</a>下载最新的Npcap<br />
+参考文档：<a href="https://blog.csdn.net/itopit/article/details/125075447">https://blog.csdn.net/itopit/article/details/125075447</a></p>
 
                     </main>
 
@@ -184,7 +190,7 @@ go test
                             <a rel="prev" href="../doc/简介.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="../doc/Web使用.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../doc/Linux运行.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -196,29 +202,13 @@ go test
                     <a rel="prev" href="../doc/简介.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="../doc/Web使用.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../doc/Linux运行.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script type="text/javascript">
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
         <script type="text/javascript">
             window.playground_copyable = true;
         </script>

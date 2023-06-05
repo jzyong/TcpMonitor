@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="doc/简介.html">简介</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="doc/本地运行.html"><strong aria-hidden="true">1.</strong> 本地运行</a></li><li class="chapter-item expanded "><a href="doc/Web使用.html"><strong aria-hidden="true">2.</strong> Web使用</a></li><li class="chapter-item expanded "><a href="doc/实现原理.html"><strong aria-hidden="true">3.</strong> 实现原理</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="doc/简介.html">简介</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="doc/本地运行.html"><strong aria-hidden="true">1.</strong> 本地运行</a></li><li class="chapter-item expanded "><a href="doc/Linux运行.html"><strong aria-hidden="true">2.</strong> Linux运行</a></li><li class="chapter-item expanded "><a href="doc/Web使用.html"><strong aria-hidden="true">3.</strong> Web使用</a></li><li class="chapter-item expanded "><a href="doc/实现原理.html"><strong aria-hidden="true">4.</strong> 实现原理</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -143,6 +143,7 @@
 因为每个项目TCP协议规范不一致，因此次项目不能直接使用，需要自行修改包封装逻辑和统计逻辑。</p>
 <ul>
 <li><a href="doc/%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C.html">本地运行</a></li>
+<li><a href="doc/Linux%E8%BF%90%E8%A1%8C.html">Linux运行</a></li>
 <li><a href="doc/Web%E4%BD%BF%E7%94%A8.html">Web使用</a></li>
 <li><a href="doc/%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.html">实现原理</a></li>
 </ul>
@@ -180,13 +181,109 @@ TcpMonitor.exe -m device
 # 4 运行网络工具 访问：http://127.0.0.1:5041 
 TcpMonitor.exe --config config/ApplicationConfig_develop_gate.json
 </code></pre>
+<p><img src="doc/../img/%E6%9F%A5%E7%9C%8B%E7%BD%91%E5%8D%A1%E5%88%97%E8%A1%A8.png" alt="查看网卡列表" /></p>
 <h3 id="运行tcp服务器客户端"><a class="header" href="#运行tcp服务器客户端">运行TCP服务器、客户端</a></h3>
 <pre><code class="language-shell"># 1.运行测试服务器代码
 cd service\gate\example
 go test
 </code></pre>
+<p><img src="doc/../img/%E6%B5%8B%E8%AF%95%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%A2%E6%88%B7%E7%AB%AF.png" alt="测试服务器客户端" /></p>
+<h2 id="常见问题"><a class="header" href="#常见问题">常见问题</a></h2>
+<p><strong>1. couldn't load wpcap.dll</strong><br />
+去<a href="https://npcap.com/">官网</a>下载最新的Npcap<br />
+参考文档：<a href="https://blog.csdn.net/itopit/article/details/125075447">https://blog.csdn.net/itopit/article/details/125075447</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="linux运行"><a class="header" href="#linux运行">Linux运行</a></h1>
+<p>  <code>service/gate/example</code>目录提供了示例TCP服务器客户端，可直接本地运行。需要提前安装go和mongodb运行环境。</p>
+<h3 id="安装mongodb-1"><a class="header" href="#安装mongodb-1">安装MongoDB</a></h3>
+<pre><code class="language-shell"># 1. 运行镜像
+docker run -itd --name mongo-3.6.23 --restart=always -p 27017:27017 mongo:3.6.23 --auth
+
+# 2. 进入容器创建账号
+docker exec -it mongo-3.6.23 mongo admin
+# 创建一个名为 admin，密码为 123456 的用户。
+db.createUser({ user:'admin',pwd:'123456',roles:[ { role:'userAdminAnyDatabase', db: 'admin'},&quot;readWriteAnyDatabase&quot;]});
+# 尝试使用上面创建的用户信息进行连接。
+db.auth('admin', '123456')
+
+# 3. 连接地址
+mongodb://admin:123456@192.168.110.16:27017/?authSource=admin&amp;readPreference=primary&amp;appname=MongoDB%20Compass&amp;ssl=false
+</code></pre>
+<h3 id="运行项目-1"><a class="header" href="#运行项目-1">运行项目</a></h3>
+<p><strong>项目地址：</strong><a href="http://127.0.0.1:5041">http://127.0.0.1:5041</a><br />
+<strong>账号：</strong> admin<br />
+<strong>密码：</strong> 123</p>
+<pre><code class="language-shell"># 1. 克隆项目
+git clone https://github.com/jzyong/TcpMonitor.git
+
+# 2. 构建项目
+cd TcpMonitor
+CGO_ENABLED=0
+GOOS=linux
+GOARCH=amd64
+go build
+
+# 3. 查看网卡及配置config/ApplicationConfig_develop_gate.json 中的device
+./TcpMonitor -m device
+  [INFO]net_manager.go(105)--&gt; 网卡：eth0 ==&gt;
+
+# 4 运行网络工具 访问：http://127.0.0.1:5041 
+./TcpMonitor --config config/ApplicationConfig_develop_gate.json
+</code></pre>
+<h3 id="运行tcp服务器客户端-1"><a class="header" href="#运行tcp服务器客户端-1">运行TCP服务器、客户端</a></h3>
+<pre><code class="language-shell"># 1.运行测试服务器代码
+cd service\gate\example
+go test
+</code></pre>
+<h2 id="常见问题-1"><a class="header" href="#常见问题-1">常见问题</a></h2>
+<p><strong>1. error while loading shared libraries: libpcap.so.1: cannot open shared object file: No such file or directory</strong></p>
+<pre><code class="language-shell">sudo yum install libpcap
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="web使用"><a class="header" href="#web使用">Web使用</a></h1>
+<h3 id="仪表盘"><a class="header" href="#仪表盘">仪表盘</a></h3>
+<p>  首页仪表盘统计了最近24小时的socket连接情况，详细如图所示
+<img src="doc/../img/%E4%BB%AA%E8%A1%A8%E7%9B%981.png" alt="仪表盘1" />
+<img src="doc/../img/%E4%BB%AA%E8%A1%A8%E7%9B%982.png" alt="仪表盘2" /></p>
+<h3 id="套接字"><a class="header" href="#套接字">套接字</a></h3>
+<p>  套接字展示最近30天所有socket创建列表。可通过玩家Id和客户端Ip进行模糊查询，创建时间和结束时间进行排序。
+每个socket连接断开时会进行预警检测，发送到sentry中，具体逻辑如下：</p>
+<ol>
+<li>失败数&gt;10&amp;&amp;失败率&gt;0.1 ==&gt; 网络监控：玩家%v ip=[] 消息=[%v=%v] 请求=%v次 失败=%v次 失败率=%v</li>
+<li>请求数&gt;10&amp;&amp;平均延迟&gt;200 ==&gt; 网络监控：玩家%v ip=[%v] 消息=[%v=%v] 请求=%v次 平均延迟=%vms 最大延迟=%vms</li>
+<li>请求数&gt;100&amp;&amp;（重复请求&gt;10||重复返回&gt;10) ==&gt; 网络监控：玩家%v ip=[%v] 消息=[%v=%v] 请求=%v次 重复请求=%v 重复返回=%vms</li>
+</ol>
+<p>  点击<code>详细</code>按钮可查看每个socket的详细消息请求，可进行线上玩家Bug排查辅助，判断服务器有没有给客户端反消息或消息是否正确。<br />
+  点击<code>统计</code>按钮可查看每个socket的消息统计：延迟、数量、重复请求、字节大小、rps......
+<img src="doc/../img/%E5%A5%97%E6%8E%A5%E5%AD%97%E8%BF%9E%E6%8E%A51.png" alt="套接字连接1" />
+<img src="doc/../img/%E5%A5%97%E6%8E%A5%E5%AD%97%E8%BF%9E%E6%8E%A52.png" alt="套接字连接2" />
+<img src="doc/../img/%E5%A5%97%E6%8E%A5%E5%AD%97%E8%BF%9E%E6%8E%A53.png" alt="套接字连接3" /></p>
+<h3 id="消息"><a class="header" href="#消息">消息</a></h3>
+<p>  展示<code>net-service</code>启动到现在所监控网关所有收发消息的统计，包括延迟、数量、重复请求、字节大小、rps等。
+<img src="doc/../img/%E6%B6%88%E6%81%AF1.png" alt="消息1" /></p>
+<h3 id="服务器"><a class="header" href="#服务器">服务器</a></h3>
+<p>  可查看服务器启动到现在或最近24小时的负载、CPU百分比、内存、连接数、带宽。
+<img src="doc/../img/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BF%A1%E6%81%AF.png" alt="服务器信息" /></p>
+<h3 id="控制台"><a class="header" href="#控制台">控制台</a></h3>
+<p>  控制台可事实查看网关消息，可选择<code>Socket关闭或打开``基础日志``详细日志</code>三种模式，可过滤ip和玩家Id
+<img src="doc/../img/%E6%8E%A7%E5%88%B6%E5%8F%B0.png" alt="控制台" /></p>
+<h3 id="国家城市"><a class="header" href="#国家城市">国家&amp;城市</a></h3>
+<p>  国家和城市分别根据范围大小进行统计分析，最近24小时的数据。</p>
+<ul>
+<li><strong>列表</strong><br />
+展示国家或城市所有的详细统计，可在搜索栏查询国家或城市关键字。
+<img src="doc/../img/country-list.png" alt="国家列表" /></li>
+<li><strong>图表</strong><br />
+国家或城市关键信息柱状图对比线上，只显示用户数最多的前50条数据。
+<img src="doc/../img/country-chart.png" alt="国家图表" /></li>
+<li><strong>地图</strong><br />
+国家或城市用户地图分布状况，主要查看玩家所在区域，人数，延迟等。 标记圆圈半径=socket连接数*100m；颜色表示延迟,绿色&lt;100ms,黄色&lt;200ms,红色&gt;200ms
+<img src="doc/../img/country-map.png" alt="国家地图" /></li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="实现原理"><a class="header" href="#实现原理">实现原理</a></h1>
+<p>  使用gopacket直接在网卡上拦截服务器或客户端所有请求消息,beego做网页展示统计。流程如下：
+<img src="doc/../img/%E6%B6%88%E6%81%AF%E6%8B%A6%E6%88%AA%E6%B5%81%E7%A8%8B.png" alt="消息拦截流程" /></p>
+<h3 id="tcp协议"><a class="header" href="#tcp协议">TCP协议</a></h3>
+<p>  示例代码使用如下TCP自定义协议。<br />
+<code>消息长度</code>(4B)+<code>消息ID</code>(4B)+<code>Ack</code>(4B)+<code>Seq</code>(4B)+<code>Protobuf消息体</code></p>
 
                     </main>
 
@@ -202,22 +299,6 @@ go test
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script type="text/javascript">
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
         <script type="text/javascript">
             window.playground_copyable = true;
         </script>

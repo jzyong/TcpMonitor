@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../doc/简介.html">简介</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../doc/本地运行.html"><strong aria-hidden="true">1.</strong> 本地运行</a></li><li class="chapter-item expanded "><a href="../doc/Web使用.html"><strong aria-hidden="true">2.</strong> Web使用</a></li><li class="chapter-item expanded "><a href="../doc/实现原理.html" class="active"><strong aria-hidden="true">3.</strong> 实现原理</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../doc/简介.html">简介</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../doc/本地运行.html"><strong aria-hidden="true">1.</strong> 本地运行</a></li><li class="chapter-item expanded "><a href="../doc/Linux运行.html"><strong aria-hidden="true">2.</strong> Linux运行</a></li><li class="chapter-item expanded "><a href="../doc/Web使用.html"><strong aria-hidden="true">3.</strong> Web使用</a></li><li class="chapter-item expanded "><a href="../doc/实现原理.html" class="active"><strong aria-hidden="true">4.</strong> 实现原理</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -138,6 +138,11 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="实现原理"><a class="header" href="#实现原理">实现原理</a></h1>
+<p>  使用gopacket直接在网卡上拦截服务器或客户端所有请求消息,beego做网页展示统计。流程如下：
+<img src="../img/%E6%B6%88%E6%81%AF%E6%8B%A6%E6%88%AA%E6%B5%81%E7%A8%8B.png" alt="消息拦截流程" /></p>
+<h3 id="tcp协议"><a class="header" href="#tcp协议">TCP协议</a></h3>
+<p>  示例代码使用如下TCP自定义协议。<br />
+<code>消息长度</code>(4B)+<code>消息ID</code>(4B)+<code>Ack</code>(4B)+<code>Seq</code>(4B)+<code>Protobuf消息体</code></p>
 
                     </main>
 
@@ -159,22 +164,6 @@
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script type="text/javascript">
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
         <script type="text/javascript">
             window.playground_copyable = true;
         </script>

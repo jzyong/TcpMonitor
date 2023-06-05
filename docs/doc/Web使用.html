@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../doc/简介.html">简介</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../doc/本地运行.html"><strong aria-hidden="true">1.</strong> 本地运行</a></li><li class="chapter-item expanded "><a href="../doc/Web使用.html" class="active"><strong aria-hidden="true">2.</strong> Web使用</a></li><li class="chapter-item expanded "><a href="../doc/实现原理.html"><strong aria-hidden="true">3.</strong> 实现原理</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../doc/简介.html">简介</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../doc/本地运行.html"><strong aria-hidden="true">1.</strong> 本地运行</a></li><li class="chapter-item expanded "><a href="../doc/Linux运行.html"><strong aria-hidden="true">2.</strong> Linux运行</a></li><li class="chapter-item expanded "><a href="../doc/Web使用.html" class="active"><strong aria-hidden="true">3.</strong> Web使用</a></li><li class="chapter-item expanded "><a href="../doc/实现原理.html"><strong aria-hidden="true">4.</strong> 实现原理</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -138,12 +138,51 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="web使用"><a class="header" href="#web使用">Web使用</a></h1>
+<h3 id="仪表盘"><a class="header" href="#仪表盘">仪表盘</a></h3>
+<p>  首页仪表盘统计了最近24小时的socket连接情况，详细如图所示
+<img src="../img/%E4%BB%AA%E8%A1%A8%E7%9B%981.png" alt="仪表盘1" />
+<img src="../img/%E4%BB%AA%E8%A1%A8%E7%9B%982.png" alt="仪表盘2" /></p>
+<h3 id="套接字"><a class="header" href="#套接字">套接字</a></h3>
+<p>  套接字展示最近30天所有socket创建列表。可通过玩家Id和客户端Ip进行模糊查询，创建时间和结束时间进行排序。
+每个socket连接断开时会进行预警检测，发送到sentry中，具体逻辑如下：</p>
+<ol>
+<li>失败数&gt;10&amp;&amp;失败率&gt;0.1 ==&gt; 网络监控：玩家%v ip=[] 消息=[%v=%v] 请求=%v次 失败=%v次 失败率=%v</li>
+<li>请求数&gt;10&amp;&amp;平均延迟&gt;200 ==&gt; 网络监控：玩家%v ip=[%v] 消息=[%v=%v] 请求=%v次 平均延迟=%vms 最大延迟=%vms</li>
+<li>请求数&gt;100&amp;&amp;（重复请求&gt;10||重复返回&gt;10) ==&gt; 网络监控：玩家%v ip=[%v] 消息=[%v=%v] 请求=%v次 重复请求=%v 重复返回=%vms</li>
+</ol>
+<p>  点击<code>详细</code>按钮可查看每个socket的详细消息请求，可进行线上玩家Bug排查辅助，判断服务器有没有给客户端反消息或消息是否正确。<br />
+  点击<code>统计</code>按钮可查看每个socket的消息统计：延迟、数量、重复请求、字节大小、rps......
+<img src="../img/%E5%A5%97%E6%8E%A5%E5%AD%97%E8%BF%9E%E6%8E%A51.png" alt="套接字连接1" />
+<img src="../img/%E5%A5%97%E6%8E%A5%E5%AD%97%E8%BF%9E%E6%8E%A52.png" alt="套接字连接2" />
+<img src="../img/%E5%A5%97%E6%8E%A5%E5%AD%97%E8%BF%9E%E6%8E%A53.png" alt="套接字连接3" /></p>
+<h3 id="消息"><a class="header" href="#消息">消息</a></h3>
+<p>  展示<code>net-service</code>启动到现在所监控网关所有收发消息的统计，包括延迟、数量、重复请求、字节大小、rps等。
+<img src="../img/%E6%B6%88%E6%81%AF1.png" alt="消息1" /></p>
+<h3 id="服务器"><a class="header" href="#服务器">服务器</a></h3>
+<p>  可查看服务器启动到现在或最近24小时的负载、CPU百分比、内存、连接数、带宽。
+<img src="../img/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BF%A1%E6%81%AF.png" alt="服务器信息" /></p>
+<h3 id="控制台"><a class="header" href="#控制台">控制台</a></h3>
+<p>  控制台可事实查看网关消息，可选择<code>Socket关闭或打开``基础日志``详细日志</code>三种模式，可过滤ip和玩家Id
+<img src="../img/%E6%8E%A7%E5%88%B6%E5%8F%B0.png" alt="控制台" /></p>
+<h3 id="国家城市"><a class="header" href="#国家城市">国家&amp;城市</a></h3>
+<p>  国家和城市分别根据范围大小进行统计分析，最近24小时的数据。</p>
+<ul>
+<li><strong>列表</strong><br />
+展示国家或城市所有的详细统计，可在搜索栏查询国家或城市关键字。
+<img src="../img/country-list.png" alt="国家列表" /></li>
+<li><strong>图表</strong><br />
+国家或城市关键信息柱状图对比线上，只显示用户数最多的前50条数据。
+<img src="../img/country-chart.png" alt="国家图表" /></li>
+<li><strong>地图</strong><br />
+国家或城市用户地图分布状况，主要查看玩家所在区域，人数，延迟等。 标记圆圈半径=socket连接数*100m；颜色表示延迟,绿色&lt;100ms,黄色&lt;200ms,红色&gt;200ms
+<img src="../img/country-map.png" alt="国家地图" /></li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../doc/本地运行.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../doc/Linux运行.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                             <a rel="next" href="../doc/实现原理.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
@@ -155,7 +194,7 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../doc/本地运行.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../doc/Linux运行.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                     <a rel="next" href="../doc/实现原理.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
@@ -165,22 +204,6 @@
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script type="text/javascript">
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
         <script type="text/javascript">
             window.playground_copyable = true;
         </script>
