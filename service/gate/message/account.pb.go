@@ -252,6 +252,93 @@ func (x *ReconnectResponse) GetUserId() int64 {
 	return 0
 }
 
+// 心跳
+type HeartRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *HeartRequest) Reset() {
+	*x = HeartRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_account_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *HeartRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HeartRequest) ProtoMessage() {}
+
+func (x *HeartRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_account_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HeartRequest.ProtoReflect.Descriptor instead.
+func (*HeartRequest) Descriptor() ([]byte, []int) {
+	return file_account_proto_rawDescGZIP(), []int{4}
+}
+
+// 心跳
+type HeartResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TimeStamp int64 `protobuf:"varint,1,opt,name=timeStamp,proto3" json:"timeStamp,omitempty"` //时间戳
+}
+
+func (x *HeartResponse) Reset() {
+	*x = HeartResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_account_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *HeartResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HeartResponse) ProtoMessage() {}
+
+func (x *HeartResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_account_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HeartResponse.ProtoReflect.Descriptor instead.
+func (*HeartResponse) Descriptor() ([]byte, []int) {
+	return file_account_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *HeartResponse) GetTimeStamp() int64 {
+	if x != nil {
+		return x.TimeStamp
+	}
+	return 0
+}
+
 var File_account_proto protoreflect.FileDescriptor
 
 var file_account_proto_rawDesc = []byte{
@@ -275,8 +362,12 @@ var file_account_proto_rawDesc = []byte{
 	0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x22, 0x2b, 0x0a, 0x11, 0x52, 0x65, 0x63, 0x6f, 0x6e,
 	0x6e, 0x65, 0x63, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06,
 	0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x75, 0x73,
-	0x65, 0x72, 0x49, 0x64, 0x42, 0x0a, 0x5a, 0x08, 0x2f, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x72, 0x49, 0x64, 0x22, 0x0e, 0x0a, 0x0c, 0x48, 0x65, 0x61, 0x72, 0x74, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x22, 0x2d, 0x0a, 0x0d, 0x48, 0x65, 0x61, 0x72, 0x74, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x53, 0x74, 0x61,
+	0x6d, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x09, 0x74, 0x69, 0x6d, 0x65, 0x53, 0x74,
+	0x61, 0x6d, 0x70, 0x42, 0x0a, 0x5a, 0x08, 0x2f, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -291,12 +382,14 @@ func file_account_proto_rawDescGZIP() []byte {
 	return file_account_proto_rawDescData
 }
 
-var file_account_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_account_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_account_proto_goTypes = []interface{}{
 	(*UserLoginRequest)(nil),  // 0: proto.UserLoginRequest
 	(*UserLoginResponse)(nil), // 1: proto.UserLoginResponse
 	(*ReconnectRequest)(nil),  // 2: proto.ReconnectRequest
 	(*ReconnectResponse)(nil), // 3: proto.ReconnectResponse
+	(*HeartRequest)(nil),      // 4: proto.HeartRequest
+	(*HeartResponse)(nil),     // 5: proto.HeartResponse
 }
 var file_account_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -360,6 +453,30 @@ func file_account_proto_init() {
 				return nil
 			}
 		}
+		file_account_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*HeartRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_account_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*HeartResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -367,7 +484,7 @@ func file_account_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_account_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

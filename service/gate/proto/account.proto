@@ -25,5 +25,14 @@ message ReconnectResponse{
   int64 userId = 1; //用户id
 }
 
+//心跳
+message HeartRequest{
+
+}
+//心跳
+message HeartResponse{
+  int64 timeStamp =1; //时间戳
+}
+
 
 

@@ -38,7 +38,7 @@ You need to modify the TCP packet logic and application statistics by yourself.
 1. 使用文档编写（截图）
 2. 测试服务器和客户端(protobuf)
 3. GitHub page生成
-4. 
+4. 包头封装文档
 
 
 

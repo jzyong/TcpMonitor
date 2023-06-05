@@ -11,4 +11,6 @@ enum MID{
   UserLoginRes = 1000002;  //用户登录
   ReconnectReq = 1000003;  //重连
   ReconnectRes = 1000004;  //重连
+  HeartReq = 1000005;  //心跳
+  HeartRes = 1000006;  //心跳
 }
