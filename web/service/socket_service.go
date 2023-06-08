@@ -235,6 +235,10 @@ func GetGateMessages(id string) (*gate.GateMessages, error) {
 			log.Warn("解json错误:%v", err)
 			return nil, err
 		}
+		// 对消息进行排序，assembly时不能保证有序性性，根据截取包的时间进行排序
+		sort.Slice(messages2, func(i, j int) bool {
+			return messages2[i].Time < messages2[j].Time
+		})
 		messages.Message = messages2
 	}
 	return messages, nil
