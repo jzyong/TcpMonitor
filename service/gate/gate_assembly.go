@@ -61,7 +61,10 @@ func (s *GateStream) run() {
 		//前面是标识位
 		msgLength = msgLength & 0xFFFFF
 		msgData := make([]byte, msgLength)
-		if _, err := io.ReadFull(reader, msgData); err != nil && err != io.EOF {
+		if _, err := io.ReadFull(reader, msgData); err != nil {
+			if err == io.EOF || err == io.ErrUnexpectedEOF { //客户端突然杀进程，可能存在这种错误
+				return
+			}
 			log2.Error("读取数据流错误%v %v：长度=%v %v", s.net, s.transport, msgLength, err)
 			break
 		}
