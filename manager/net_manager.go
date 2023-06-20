@@ -75,7 +75,8 @@ func (m *NetManager) ListenNetCard(assembler *tcpassembly.Assembler) {
 			case packet := <-packets:
 				// A nil packet indicates the end of a pcap file.
 				if packet == nil {
-					return
+					log.Warn("接收到空 packet")
+					continue
 				}
 				if packet.NetworkLayer() == nil || packet.TransportLayer() == nil || packet.TransportLayer().LayerType() != layers.LayerTypeTCP {
 					log.Debug("Unusable packet")
