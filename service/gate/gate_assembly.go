@@ -62,6 +62,7 @@ func (s *GateStream) run() {
 		msgLength = msgLength & 0xFFFFF
 		msgData := make([]byte, msgLength)
 		if _, err := io.ReadFull(reader, msgData); err != nil {
+			//这里return会造成包截取routine阻塞？
 			log2.Error("读取数据流错误%v %v：长度=%v %v", s.net, s.transport, msgLength, err)
 			continue
 		}
